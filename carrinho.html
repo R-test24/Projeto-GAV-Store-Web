@@ -1,0 +1,122 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta name="description" content="Confira seu carrinho e informe os dados para a compra na GAV Store.">
+  <title>Carrinho e compra | GAV Store</title>
+  <link rel="stylesheet" href="style.css">
+</head>
+<body>
+  <header class="cabecalho">
+    <a class="link-logo" href="index.html" aria-label="GAV Store - página inicial">
+      <img class="logo-imagem" src="imagens/logo3d.png" alt="Logo da GAV Store" width="70" height="70">
+    </a>
+    <a class="carrinho" href="carrinho.html" aria-label="Carrinho de compras" title="Carrinho">
+      <img src="imagens/carrinho.png" alt="">
+    </a>
+    <a class="perfil" href="perfil.html" aria-label="Minha conta" title="Minha conta">
+      <img src="imagens/perfil.png" alt="">
+    </a>
+    <a class="lupa" href="pesquisa.html" aria-label="Pesquisar no site" title="Pesquisar">
+      <img src="imagens/lupa.png" alt="">
+    </a>
+    <button class="alternar-tema" type="button" aria-label="Ativar tema escuro" aria-pressed="false"></button>
+    <div id="topo">
+      <nav class="menu" aria-label="Navegação principal">
+        <a href="index.html#Inicio">INÍCIO</a>
+        <a href="index.html#Produto">PRODUTOS</a>
+        <a href="perfil.html">MINHA CONTA</a>
+      </nav>
+    </div>
+  </header>
+
+  <main class="pagina-carrinho">
+    <div class="cabecalho-carrinho">
+      <span class="selo-cadastro">GAV STORE</span>
+      <h1>Carrinho e dados de compra</h1>
+      <p>Confira seus produtos e informe onde deseja receber seu pedido.</p>
+    </div>
+
+    <div class="layout-carrinho">
+      <section class="cartao-carrinho" aria-labelledby="titulo-resumo-carrinho">
+        <div class="titulo-cartao-carrinho">
+          <h2 id="titulo-resumo-carrinho">Seu carrinho</h2>
+          <a href="index.html#Produto">Continuar comprando</a>
+        </div>
+        <div class="lista-carrinho" id="lista-carrinho" aria-live="polite"></div>
+        <div class="total-carrinho">
+          <span>Subtotal</span>
+          <strong id="total-carrinho">R$ 0,00</strong>
+        </div>
+        <p class="aviso-carrinho" id="aviso-carrinho" role="status" aria-live="polite"></p>
+      </section>
+
+      <section class="cartao-carrinho checkout-carrinho" aria-labelledby="titulo-dados-compra">
+        <h2 id="titulo-dados-compra">Dados para a compra</h2>
+        <p class="aviso-conta-carrinho" id="aviso-conta-carrinho" role="status"></p>
+        <form id="formulario-compra">
+          <fieldset id="campos-compra" disabled>
+            <legend>Contato</legend>
+            <div class="campos-checkout">
+              <div class="campo-cadastro">
+                <label for="compra-nome">Nome completo</label>
+                <input id="compra-nome" name="nome" autocomplete="name" required>
+              </div>
+              <div class="campo-cadastro">
+                <label for="compra-email">E-mail</label>
+                <input id="compra-email" name="email" type="email" autocomplete="email" required>
+              </div>
+              <div class="campo-cadastro">
+                <label for="compra-telefone">Telefone</label>
+                <input id="compra-telefone" name="telefone" type="tel" autocomplete="tel" required>
+              </div>
+            </div>
+
+            <h3 class="titulo-endereco-carrinho">Endereço de entrega</h3>
+            <div class="campos-checkout">
+              <div class="campo-cadastro">
+                <label for="compra-cep">CEP</label>
+                <input id="compra-cep" name="cep" autocomplete="postal-code" inputmode="numeric" placeholder="00000-000" required>
+              </div>
+              <div class="campo-cadastro campo-checkout-largo">
+                <label for="compra-endereco">Endereço</label>
+                <input id="compra-endereco" name="endereco" autocomplete="street-address" required>
+              </div>
+              <div class="campo-cadastro">
+                <label for="compra-numero">Número</label>
+                <input id="compra-numero" name="numero" autocomplete="address-line2" required>
+              </div>
+              <div class="campo-cadastro">
+                <label for="compra-complemento">Complemento (opcional)</label>
+                <input id="compra-complemento" name="complemento" autocomplete="off">
+              </div>
+              <div class="campo-cadastro">
+                <label for="compra-bairro">Bairro</label>
+                <input id="compra-bairro" name="bairro" required>
+              </div>
+              <div class="campo-cadastro">
+                <label for="compra-cidade">Cidade</label>
+                <input id="compra-cidade" name="cidade" autocomplete="address-level2" required>
+              </div>
+              <div class="campo-cadastro">
+                <label for="compra-estado">Estado</label>
+                <input id="compra-estado" name="estado" autocomplete="address-level1" maxlength="2" placeholder="UF" required>
+              </div>
+            </div>
+            <button class="botao-cadastro" type="submit">Salvar dados e revisar compra</button>
+          </fieldset>
+        </form>
+        <p class="aviso-finalizacao">Esta loja ainda não tem integração de pagamento: os dados de endereço ficam salvos somente neste navegador e nenhum pedido ou pagamento será enviado.</p>
+      </section>
+    </div>
+  </main>
+
+  <footer class="rodape rodape-simples">
+    <p>&copy; 2026 GAV Store. Todos os direitos reservados.</p>
+  </footer>
+  <script src="tema.js"></script>
+  <script src="catalogo.js"></script>
+  <script src="carrinho.js"></script>
+</body>
+</html>

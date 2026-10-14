@@ -1,0 +1,371 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta name="description" content="Painel administrativo da GAV Store.">
+  <title>Painel administrativo | GAV Store</title>
+  <link rel="stylesheet" href="painel-admin.css">
+</head>
+<body>
+  <div class="painel-layout">
+    <aside class="barra-lateral">
+      <a class="marca" href="index.html" aria-label="GAV Store - voltar para a loja">
+        <span class="marca-simbolo">GAV<span>.</span></span>
+        <span class="marca-legenda">PAINEL ADMINISTRATIVO</span>
+      </a>
+      <nav class="navegacao-painel" aria-label="Menu administrativo">
+        <a class="link-navegacao ativo" href="#visao-geral"><span aria-hidden="true">◫</span> Visão geral</a>
+        <a class="link-navegacao" href="#produtos"><span aria-hidden="true">▧</span> Produtos e estoque</a>
+        <a class="link-navegacao" href="#personalizar"><span aria-hidden="true">✎</span> Personalizar site</a>
+      </nav>
+      <a class="voltar-loja" href="index.html"><span aria-hidden="true">←</span> Voltar para a loja</a>
+    </aside>
+
+    <main class="conteudo-painel">
+      <header class="cabecalho-painel">
+        <div>
+          <span class="sobretitulo-painel">GAV STORE · ADMINISTRAÇÃO</span>
+          <h1>Visão geral</h1>
+          <p>Acompanhe os indicadores e gerencie o catálogo da loja.</p>
+        </div>
+        <span class="status-demo"><span aria-hidden="true"></span> Modo demonstração</span>
+      </header>
+
+      <section class="aviso-demo" aria-label="Limites dos dados deste painel">
+        <span class="aviso-icone" aria-hidden="true">i</span>
+        <p><strong>Dados locais desta demonstração.</strong> Acessos, carrinhos, produtos, preços, estoque e imagens ficam somente neste navegador; fotos são reduzidas para carregar mais rápido. Não há servidor nem autenticação de administrador. Os produtos iniciais têm estoque ilustrativo de 10 unidades; compras confirmadas aparecem como zero.</p>
+      </section>
+
+      <section id="visao-geral" class="secao-painel" aria-labelledby="titulo-indicadores">
+        <div class="titulo-secao-painel">
+          <div>
+            <span class="sobretitulo-painel">RESUMO DA LOJA</span>
+            <h2 id="titulo-indicadores">Indicadores</h2>
+          </div>
+          <span class="atualizacao-painel">Atualizado neste navegador</span>
+        </div>
+
+        <div class="grade-indicadores" aria-live="polite">
+          <article class="cartao-indicador">
+            <span class="icone-indicador icone-visitas" aria-hidden="true">↗</span>
+            <p>Acessos à loja</p>
+            <strong id="total-acessos">—</strong>
+            <span class="detalhe-indicador">Visitas à página inicial neste navegador</span>
+          </article>
+          <article class="cartao-indicador">
+            <span class="icone-indicador icone-vendas" aria-hidden="true">✓</span>
+            <p>Compras confirmadas</p>
+            <strong id="total-compras">0</strong>
+            <span class="detalhe-indicador">Nenhum pagamento é processado pela loja</span>
+          </article>
+          <article class="cartao-indicador">
+            <span class="icone-indicador icone-carrinhos" aria-hidden="true">▱</span>
+            <p>Carrinhos em aberto</p>
+            <strong id="total-carrinhos">—</strong>
+            <span class="detalhe-indicador">Carrinhos salvos sem compra confirmada</span>
+          </article>
+          <article class="cartao-indicador">
+            <span class="icone-indicador icone-produtos" aria-hidden="true">▧</span>
+            <p>Produtos cadastrados</p>
+            <strong id="total-produtos">—</strong>
+            <span class="detalhe-indicador">Itens disponíveis no catálogo desta loja</span>
+          </article>
+          <article class="cartao-indicador">
+            <span class="icone-indicador icone-estoque" aria-hidden="true">▤</span>
+            <p>Unidades em estoque</p>
+            <strong id="total-estoque">—</strong>
+            <span class="detalhe-indicador">Soma do estoque cadastrado nos produtos</span>
+          </article>
+        </div>
+        <p id="aviso-painel" class="aviso-painel" role="status" aria-live="polite"></p>
+      </section>
+
+      <section id="produtos" class="secao-painel secao-produtos" aria-labelledby="titulo-produtos">
+        <div class="titulo-secao-painel">
+          <div>
+            <span class="sobretitulo-painel">CATÁLOGO</span>
+            <h2 id="titulo-produtos">Produtos e preços</h2>
+          </div>
+          <span class="contador-produtos" id="contador-produtos">— produtos</span>
+        </div>
+
+        <div class="cartao-catalogo">
+          <div class="cabecalho-tabela">
+            <div>
+              <h3>Seus produtos</h3>
+              <p>Edite os dados, preços e estoque. As alterações são refletidas na vitrine.</p>
+            </div>
+          </div>
+          <div class="ferramentas-catalogo">
+            <label class="busca-produtos" for="buscar-produtos">
+              <span aria-hidden="true">⌕</span>
+              <input id="buscar-produtos" type="search" placeholder="Buscar produto..." autocomplete="off">
+            </label>
+            <label class="filtro-estoque" for="filtro-estoque">Estoque
+              <select id="filtro-estoque">
+                <option value="todos">Todos</option>
+                <option value="baixo">Estoque baixo (até 5)</option>
+                <option value="zerado">Sem estoque</option>
+              </select>
+            </label>
+          </div>
+          <div class="tabela-responsiva">
+            <table>
+              <thead>
+                <tr>
+                  <th scope="col">Produto</th>
+                  <th scope="col">Preço</th>
+                  <th scope="col">Estoque</th>
+                  <th scope="col"><span class="texto-acessivel">Ações</span></th>
+                </tr>
+              </thead>
+              <tbody id="lista-produtos-admin"></tbody>
+            </table>
+          </div>
+          <p id="aviso-catalogo" class="aviso-catalogo" role="status" aria-live="polite"></p>
+        </div>
+
+        <div class="cartao-novo-produto">
+          <div class="cabecalho-tabela">
+            <div>
+              <h3>Cadastrar produto</h3>
+              <p>Cadastre o produto, escolha suas imagens e informe a quantidade disponível.</p>
+            </div>
+          </div>
+          <form id="formulario-produto" class="formulario-produto">
+            <div class="campo-produto">
+              <label for="produto-nome">Nome do produto</label>
+              <input id="produto-nome" name="nome" type="text" maxlength="80" required>
+            </div>
+            <div class="campo-produto">
+              <label for="produto-preco">Preço (R$)</label>
+              <input id="produto-preco" name="preco" type="number" min="0.01" step="0.01" placeholder="99,90" required>
+            </div>
+            <div class="campo-produto">
+              <label for="produto-estoque">Estoque inicial</label>
+              <input id="produto-estoque" name="estoque" type="number" min="0" step="1" value="0" required>
+            </div>
+            <div class="campo-produto campo-imagem">
+              <label for="produto-imagem">Fotos do produto</label>
+              <input id="produto-imagem" name="imagens" type="file" accept="image/*" multiple required>
+              <span class="ajuda-campo">Escolha uma ou mais imagens do dispositivo. A primeira será a capa; os arquivos são reduzidos para caber no armazenamento deste navegador.</span>
+            </div>
+            <button class="botao-principal" type="submit">Cadastrar produto <span aria-hidden="true">+</span></button>
+          </form>
+        </div>
+      </section>
+      <section id="personalizar" class="secao-painel secao-personalizar" aria-labelledby="titulo-personalizar">
+        <div class="titulo-secao-painel">
+          <div>
+            <span class="sobretitulo-painel">APARÊNCIA DA LOJA</span>
+            <h2 id="titulo-personalizar">Personalizar site</h2>
+          </div>
+          <span class="contador-produtos">Salvo neste navegador</span>
+        </div>
+
+        <form id="formulario-personalizacao" class="formulario-personalizacao">
+          <section class="cartao-personalizacao" aria-labelledby="titulo-banners">
+            <div class="cabecalho-tabela">
+              <div>
+                <h3 id="titulo-banners">Banners da página inicial</h3>
+                <p>Escolha imagens do seu dispositivo. As fotos serão comprimidas para armazenamento local.</p>
+              </div>
+            </div>
+            <div class="grade-banners">
+              <div class="campo-banner">
+                <div class="preview-banner"><img id="preview-slide-1" alt="Prévia do banner 1"></div>
+                <label for="imagem-slide-1">Banner do carrossel 1</label>
+                <input id="imagem-slide-1" type="file" accept="image/*" data-imagem-site="slide1">
+              </div>
+              <div class="campo-banner">
+                <div class="preview-banner"><img id="preview-slide-2" alt="Prévia do banner 2"></div>
+                <label for="imagem-slide-2">Banner do carrossel 2</label>
+                <input id="imagem-slide-2" type="file" accept="image/*" data-imagem-site="slide2">
+              </div>
+              <div class="campo-banner">
+                <div class="preview-banner"><img id="preview-slide-3" alt="Prévia do banner 3"></div>
+                <label for="imagem-slide-3">Banner do carrossel 3</label>
+                <input id="imagem-slide-3" type="file" accept="image/*" data-imagem-site="slide3">
+              </div>
+              <div class="campo-banner">
+                <div class="preview-banner"><img id="preview-banner-centro" alt="Prévia do banner central"></div>
+                <label for="imagem-banner-centro">Banner central da página</label>
+                <input id="imagem-banner-centro" type="file" accept="image/*" data-imagem-site="bannerCentro">
+              </div>
+            </div>
+            <div class="cabecalho-imagens-adicionais">
+              <h4>Imagens das seções</h4>
+              <p>Troque também as imagens das categorias, da galeria e do guia de tamanhos.</p>
+            </div>
+            <div class="grade-banners grade-imagens-adicionais">
+              <div class="campo-banner">
+                <div class="preview-banner"><img id="preview-categoria1" alt="Prévia da categoria Conjuntos"></div>
+                <label for="imagem-categoria1">Categoria: Conjuntos</label>
+                <input id="imagem-categoria1" type="file" accept="image/*" data-imagem-site="categoria1">
+              </div>
+              <div class="campo-banner">
+                <div class="preview-banner"><img id="preview-categoria2" alt="Prévia da categoria Tops e leggings"></div>
+                <label for="imagem-categoria2">Categoria: Tops e leggings</label>
+                <input id="imagem-categoria2" type="file" accept="image/*" data-imagem-site="categoria2">
+              </div>
+              <div class="campo-banner">
+                <div class="preview-banner"><img id="preview-categoria3" alt="Prévia da categoria Shorts"></div>
+                <label for="imagem-categoria3">Categoria: Shorts</label>
+                <input id="imagem-categoria3" type="file" accept="image/*" data-imagem-site="categoria3">
+              </div>
+              <div class="campo-banner">
+                <div class="preview-banner"><img id="preview-categoria4" alt="Prévia da categoria Jaquetas"></div>
+                <label for="imagem-categoria4">Categoria: Jaquetas</label>
+                <input id="imagem-categoria4" type="file" accept="image/*" data-imagem-site="categoria4">
+              </div>
+              <div class="campo-banner">
+                <div class="preview-banner"><img id="preview-galeria1" alt="Prévia da imagem da galeria 1"></div>
+                <label for="imagem-galeria1">Galeria da coleção: imagem 1</label>
+                <input id="imagem-galeria1" type="file" accept="image/*" data-imagem-site="galeria1">
+              </div>
+              <div class="campo-banner">
+                <div class="preview-banner"><img id="preview-galeria2" alt="Prévia da imagem da galeria 2"></div>
+                <label for="imagem-galeria2">Galeria da coleção: imagem 2</label>
+                <input id="imagem-galeria2" type="file" accept="image/*" data-imagem-site="galeria2">
+              </div>
+              <div class="campo-banner">
+                <div class="preview-banner"><img id="preview-galeria3" alt="Prévia da imagem da galeria 3"></div>
+                <label for="imagem-galeria3">Galeria da coleção: imagem 3</label>
+                <input id="imagem-galeria3" type="file" accept="image/*" data-imagem-site="galeria3">
+              </div>
+              <div class="campo-banner">
+                <div class="preview-banner"><img id="preview-guia" alt="Prévia da imagem do guia de tamanhos"></div>
+                <label for="imagem-guia">Guia de tamanhos</label>
+                <input id="imagem-guia" type="file" accept="image/*" data-imagem-site="guia">
+              </div>
+            </div>
+            <p class="ajuda-personalizacao">Os banners ocupam espaço de armazenamento neste navegador. Prefira imagens leves; a ferramenta ajusta o tamanho automaticamente.</p>
+          </section>
+
+          <section class="cartao-personalizacao" aria-labelledby="titulo-textos-site">
+            <div class="cabecalho-tabela">
+              <div>
+                <h3 id="titulo-textos-site">Textos da loja e rodapé</h3>
+                <p>Atualize a mensagem de apresentação e os textos exibidos no rodapé.</p>
+              </div>
+            </div>
+            <div class="campos-textos-site">
+              <div class="campo-produto campo-texto-largo">
+                <label for="texto-slide-3">Título do terceiro banner</label>
+                <input id="texto-slide-3" name="tituloSlide" type="text" maxlength="90">
+              </div>
+              <div class="campo-produto campo-texto-largo">
+                <label for="descricao-slide-3">Descrição do terceiro banner</label>
+                <input id="descricao-slide-3" name="descricaoSlide" type="text" maxlength="140">
+              </div>
+              <div class="campo-produto">
+                <label for="botao-slide-1">Texto do botão do primeiro banner</label>
+                <input id="botao-slide-1" name="botaoSlide1" type="text" maxlength="40">
+              </div>
+              <div class="campo-produto">
+                <label for="botao-slide-3">Texto do botão do terceiro banner</label>
+                <input id="botao-slide-3" name="botaoSlide3" type="text" maxlength="40">
+              </div>
+              <div class="campo-produto campo-texto-largo">
+                <label for="descricao-rodape">Descrição da loja no rodapé</label>
+                <textarea id="descricao-rodape" name="descricaoRodape" rows="3" maxlength="240"></textarea>
+              </div>
+              <div class="campo-produto campo-texto-largo">
+                <label for="texto-copyright">Texto de direitos autorais</label>
+                <input id="texto-copyright" name="copyright" type="text" maxlength="120">
+              </div>
+              <div class="campo-produto">
+                <label for="link-instagram">Link do Instagram</label>
+                <input id="link-instagram" name="instagram" type="url" placeholder="https://www.instagram.com/sualoja/">
+              </div>
+              <div class="campo-produto">
+                <label for="link-facebook">Link do Facebook</label>
+                <input id="link-facebook" name="facebook" type="url" placeholder="https://www.facebook.com/sualoja">
+              </div>
+              <div class="campo-produto campo-texto-largo">
+                <label for="link-whatsapp">Link do WhatsApp</label>
+                <input id="link-whatsapp" name="whatsapp" type="url" placeholder="https://wa.me/5511999999999">
+              </div>
+            </div>
+          </section>
+
+          <section class="cartao-personalizacao" aria-labelledby="titulo-secoes-site">
+            <div class="cabecalho-tabela">
+              <div>
+                <h3 id="titulo-secoes-site">Seções visíveis</h3>
+                <p>Escolha quais áreas aparecem na página inicial e na navegação.</p>
+              </div>
+            </div>
+            <div class="opcoes-secoes-site">
+              <label class="opcao-secao-site"><input type="checkbox" data-secao-site="carrossel"> <span><strong>Banners do topo</strong><small>Carrossel de destaque da loja</small></span></label>
+              <label class="opcao-secao-site"><input type="checkbox" data-secao-site="colecao"> <span><strong>Explorar a coleção</strong><small>Blocos de categorias da loja</small></span></label>
+              <label class="opcao-secao-site"><input type="checkbox" data-secao-site="movimento"> <span><strong>Galeria da coleção</strong><small>Imagens e inspiração da marca</small></span></label>
+              <label class="opcao-secao-site"><input type="checkbox" data-secao-site="bannerCentro"> <span><strong>Banner central</strong><small>Imagem entre a galeria e o vídeo</small></span></label>
+              <label class="opcao-secao-site"><input type="checkbox" data-secao-site="video"> <span><strong>Vídeo</strong><small>Vídeo em destaque</small></span></label>
+              <label class="opcao-secao-site"><input type="checkbox" data-secao-site="manifesto"> <span><strong>Manifesto da marca</strong><small>Benefícios e diferenciais</small></span></label>
+              <label class="opcao-secao-site"><input type="checkbox" data-secao-site="produtos"> <span><strong>Produtos</strong><small>Vitrine de produtos e preços</small></span></label>
+              <label class="opcao-secao-site"><input type="checkbox" data-secao-site="guia"> <span><strong>Guia de tamanhos</strong><small>Imagem e chamada para a coleção</small></span></label>
+              <label class="opcao-secao-site"><input type="checkbox" data-secao-site="beneficiosRodape"> <span><strong>Diferenciais do rodapé</strong><small>Faixa de vantagens da loja</small></span></label>
+              <label class="opcao-secao-site"><input type="checkbox" data-secao-site="menuSobre"> <span><strong>Link “Sobre”</strong><small>Exibir a seção Sobre na navegação</small></span></label>
+              <label class="opcao-secao-site"><input type="checkbox" data-secao-site="menuContatos"> <span><strong>Link “Contatos”</strong><small>Exibir Contatos na navegação</small></span></label>
+            </div>
+          </section>
+          <p id="aviso-personalizacao" class="aviso-catalogo" role="status" aria-live="polite"></p>
+          <div class="acoes-personalizacao">
+            <button id="restaurar-personalizacao" class="botao-cancelar" type="button">Restaurar padrão</button>
+            <button class="botao-principal" type="submit">Salvar personalização</button>
+          </div>
+        </form>
+      </section>
+      <dialog id="dialogo-editar-produto" class="dialogo-produto" aria-labelledby="titulo-editar-produto">
+        <form id="formulario-editar-produto" class="formulario-dialogo">
+          <div class="cabecalho-dialogo">
+            <div>
+              <span class="sobretitulo-painel">CATÁLOGO</span>
+              <h2 id="titulo-editar-produto">Editar produto</h2>
+              <p>Atualize as informações e o estoque disponível.</p>
+            </div>
+            <button class="botao-fechar-dialogo" type="button" data-fechar-dialogo aria-label="Fechar">×</button>
+          </div>
+          <input name="id" type="hidden">
+          <div class="campos-dialogo">
+            <div class="campo-produto campo-dialogo-largo">
+              <label for="editar-nome">Nome do produto</label>
+              <input id="editar-nome" name="nome" type="text" maxlength="80" required>
+            </div>
+            <div class="campo-produto">
+              <label for="editar-preco">Preço (R$)</label>
+              <input id="editar-preco" name="preco" type="number" min="0.01" step="0.01" required>
+            </div>
+            <div class="campo-produto">
+              <label for="editar-estoque">Estoque (unidades)</label>
+              <input id="editar-estoque" name="estoque" type="number" min="0" step="1" required>
+            </div>
+            <div class="campo-produto campo-dialogo-largo">
+              <div class="rotulo-galeria">
+                <span>Imagens do produto</span>
+                <span class="ajuda-galeria">Escolha fotos do dispositivo e ajuste zoom e enquadramento de cada uma. A primeira será a capa.</span>
+              </div>
+              <div id="lista-imagens-produto" class="lista-imagens-produto"></div>
+              <button id="adicionar-imagem-produto" class="botao-adicionar-imagem" type="button">
+                <span aria-hidden="true">+</span> Adicionar outra imagem
+              </button>
+            </div>
+          </div>
+          <p id="aviso-edicao-produto" class="aviso-catalogo" role="status" aria-live="polite"></p>
+          <div class="acoes-dialogo">
+            <button class="botao-cancelar" type="button" data-fechar-dialogo>Cancelar</button>
+            <button class="botao-principal" type="submit">Salvar alterações</button>
+          </div>
+        </form>
+      </dialog>
+      <footer class="rodape-painel">GAV Store <span>·</span> Painel local de demonstração</footer>
+    </main>
+  </div>
+  <script src="catalogo.js"></script>
+  <script src="site-config.js"></script>
+  <script src="personalizacao-admin.js"></script>
+  <script src="painel-admin.js"></script>
+</body>
+</html>

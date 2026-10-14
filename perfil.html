@@ -1,0 +1,120 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta name="description" content="Crie sua conta na GAV Store.">
+  <title>Cadastro | GAV Store</title>
+  <link rel="stylesheet" href="style.css">
+</head>
+<body>
+  <header class="cabecalho">
+    <a href="index.html" aria-label="GAV Store - página inicial">
+      <img class="logo-imagem" src="imagens/logo3d.png" alt="Logo da GAV Store" width="70" height="70">
+    </a>
+    <a class="carrinho" href="carrinho.html" aria-label="Carrinho de compras" title="Carrinho">
+      <img src="imagens/carrinho.png" alt="">
+    </a>
+    <a class="perfil" href="perfil.html" aria-label="Cadastro" title="Cadastro">
+      <img src="imagens/perfil.png" alt="">
+    </a>
+    <a class="lupa" href="pesquisa.html" aria-label="Pesquisar no site" title="Pesquisar">
+      <img src="imagens/lupa.png" alt="">
+    </a>
+    <button class="alternar-tema" type="button" aria-label="Ativar tema escuro" aria-pressed="false"></button>
+    <div id="topo">
+      <nav class="menu" aria-label="Navegação principal">
+        <a href="index.html#Início">INÍCIO</a>
+        <a href="index.html#Produto">PRODUTOS</a>
+        <a href="index.html#Sobre">SOBRE</a>
+        <a href="index.html#Contatos">CONTATOS</a>
+      </nav>
+    </div>
+  </header>
+
+  <main class="pagina-cadastro">
+    <section class="cartao-cadastro painel-perfil" id="painel-perfil" aria-labelledby="titulo-perfil" hidden>
+      <span class="selo-cadastro">GAV STORE</span>
+      <h1 id="titulo-perfil">Minha conta</h1>
+      <p class="texto-cadastro" id="boas-vindas-perfil"></p>
+      <dl class="dados-perfil">
+        <div><dt>Nome</dt><dd id="perfil-nome"></dd></div>
+        <div><dt>E-mail</dt><dd id="perfil-email"></dd></div>
+        <div><dt>Telefone</dt><dd id="perfil-telefone"></dd></div>
+      </dl>
+      <div class="resumo-perfil-carrinho" id="perfil-resumo-carrinho" aria-live="polite"></div>
+      <div class="acoes-perfil">
+        <a class="botao-cadastro" href="carrinho.html">Ver carrinho e dados de compra</a>
+        <button class="botao-secundario-perfil" id="editar-perfil" type="button">Editar meus dados</button>
+      </div>
+      <p class="aviso-cadastro">Os dados desta demonstração ficam apenas neste navegador. Não há serviço de conta conectado.</p>
+    </section>
+
+    <section class="cartao-cadastro" aria-labelledby="titulo-cadastro">
+      <span class="selo-cadastro">GAV STORE</span>
+      <h1 id="titulo-cadastro">Crie sua conta</h1>
+      <p class="texto-cadastro" id="descricao-cadastro">Preencha seus dados para fazer parte da nossa loja.</p>
+
+      <form class="formulario-cadastro" id="formulario-cadastro">
+        <div class="campo-cadastro">
+          <label for="nome">Nome completo</label>
+          <input id="nome" name="nome" type="text" autocomplete="name" placeholder="Seu nome completo" required>
+        </div>
+
+        <div class="campo-cadastro">
+          <label for="email">E-mail</label>
+          <input id="email" name="email" type="email" autocomplete="email" placeholder="voce@exemplo.com" required>
+        </div>
+
+        <div class="campo-cadastro">
+          <label for="telefone">Telefone</label>
+          <input id="telefone" name="telefone" type="tel" autocomplete="tel" inputmode="tel" placeholder="(00) 00000-0000" required>
+        </div>
+
+        <div class="campo-cadastro">
+          <label for="senha">Senha</label>
+          <input id="senha" name="senha" type="password" autocomplete="new-password" minlength="8" placeholder="Mínimo de 8 caracteres" required>
+        </div>
+
+        <div class="campo-cadastro">
+          <label for="confirmar-senha">Confirme sua senha</label>
+          <input id="confirmar-senha" name="confirmar-senha" type="password" autocomplete="new-password" minlength="8" placeholder="Digite a senha novamente" required>
+        </div>
+
+        <button class="botao-cadastro" type="submit">Criar conta</button>
+        <p class="aviso-cadastro" id="aviso-cadastro" role="status" aria-live="polite">
+          Seus dados de contato serão salvos somente neste navegador. A senha não será armazenada.
+        </p>
+      </form>
+      <a class="voltar-loja" href="index.html">Voltar para a loja</a>
+    </section>
+  </main>
+
+  <footer class="rodape">
+    <div class="redes-sociais" aria-label="Redes sociais da GAV Store">
+      <a href="https://www.instagram.com/" target="_blank" rel="noopener noreferrer" aria-label="Instagram" title="Instagram">
+        <svg viewBox="0 0 24 24" aria-hidden="true">
+          <rect x="3" y="3" width="18" height="18" rx="5"></rect>
+          <circle cx="12" cy="12" r="4"></circle>
+          <circle class="ponto-icone" cx="17.5" cy="6.5" r="1"></circle>
+        </svg>
+      </a>
+      <a href="https://www.facebook.com/" target="_blank" rel="noopener noreferrer" aria-label="Facebook" title="Facebook">
+        <svg viewBox="0 0 24 24" aria-hidden="true">
+          <path class="icone-preenchido" d="M13.4 21v-8h2.7l.4-3h-3.1V8.1c0-.9.3-1.5 1.6-1.5h1.7V3.9c-.3 0-1.3-.1-2.5-.1-2.5 0-4.2 1.5-4.2 4.3V10H7.2v3H10v8h3.4z"></path>
+        </svg>
+      </a>
+      <a href="https://www.whatsapp.com/" target="_blank" rel="noopener noreferrer" aria-label="WhatsApp" title="WhatsApp">
+        <svg viewBox="0 0 24 24" aria-hidden="true">
+          <path d="M20.5 11.8a8.5 8.5 0 0 1-12.6 7.4L3 20.5l1.4-4.7a8.5 8.5 0 1 1 16.1-4z"></path>
+          <path d="M8.5 7.8c.2-.4.4-.4.7-.4h.4c.2 0 .3.1.4.4l.7 1.7c.1.2.1.4 0 .5l-.5.6c-.2.2-.2.3-.1.5.3.6.8 1.1 1.3 1.5.6.5 1.2.8 1.8 1 .2.1.4.1.5-.1l.7-.8c.2-.2.3-.2.5-.1l1.6.8c.2.1.3.2.3.4 0 .3-.2 1.2-.8 1.6-.5.4-1.1.6-1.8.5-.6-.1-1.4-.3-2.4-.8-1.3-.6-2.4-1.6-3.3-2.7-.9-1-1.4-2.2-1.5-3.1 0-.7.2-1.2.5-1.5z"></path>
+        </svg>
+      </a>
+    </div>
+    <p>&copy; 2026 GAV Store. Todos os direitos reservados.</p>
+  </footer>
+  <script src="tema.js"></script>
+  <script src="carrinho.js"></script>
+  <script src="cadastro.js"></script>
+</body>
+</html>

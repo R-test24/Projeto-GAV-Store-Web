@@ -1,0 +1,260 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>GAV Store</title>
+    <link rel="stylesheet" href="style.css">
+    
+</head>
+<body id="Inicio">
+    <header class="cabecalho">
+      <a class="link-logo" href="#Inicio" aria-label="GAV Store - início">
+        <img class="logo-imagem" src="imagens/logo3d.png" alt="Logo da GAV Store" width="150" height="150">
+      </a>
+
+      <a class="carrinho" href="carrinho.html" aria-label="Carrinho de compras" title="Carrinho">
+        <img src="imagens/carrinho.png" alt="">
+      </a>
+      <a class="perfil" href="perfil.html" aria-label="Perfil de usuario" title="Perfil">
+        <img src="imagens/perfil.png" alt=""> 
+      </a>
+      <a class="lupa" href="pesquisa.html" aria-label="Pesquisar no site" title="Pesquisar">
+        <img src="imagens/lupa.png" alt="">
+      </a>
+      <button class="alternar-tema" type="button" aria-label="Ativar tema escuro" aria-pressed="false"></button>
+                <div id="topo">
+            <nav class="menu"> 
+                <a href="#Inicio">INÍCIO</a>
+                <a href="#Produto" data-menu-site="produtos">PRODUTOS</a>
+                <a href="#Sobre" data-menu-site="menuSobre">SOBRE</a>
+                <a href="#Contatos" data-menu-site="menuContatos">CONTATOS</a>
+            </nav>
+
+        </div>
+      </header>
+
+      <main>
+        <section class="carrossel" data-area-site="carrossel" aria-label="Destaques da GAV Store" aria-roledescription="carrossel">
+          <div class="carrossel-slides">
+            <article class="carrossel-slide ativo" aria-label="1 de 3" aria-roledescription="slide" aria-hidden="false">
+              <img data-imagem-site="slide1" src="imagens/banner.png" alt="Atleta correndo em uma pista urbana ao entardecer">
+              <a class="botao-banner" data-texto-site="botaoSlide1" href="#Produto">Ver coleção <span aria-hidden="true">&rarr;</span></a>
+            </article>
+            <article class="carrossel-slide" aria-label="2 de 3" aria-roledescription="slide" aria-hidden="true" inert>
+              <img data-imagem-site="slide2" src="imagens/figma/atleta-estudio.png" alt="Atleta treinando em um estúdio de concreto iluminado">
+            </article>
+            <article class="carrossel-slide" aria-label="3 de 3" aria-roledescription="slide" aria-hidden="true" inert>
+              <img data-imagem-site="slide3" src="imagens/figma/treino-dupla-por-do-sol.png" alt="Duas pessoas treinando em uma quadra ao pôr do sol">
+              <div class="carrossel-legenda">
+                <span>FEITO PARA VOCÊ</span>
+                <h1>Seu movimento, suas regras.</h1>
+                <p data-texto-site="descricaoSlide">Encontre peças que acompanham cada treino.</p>
+                <a href="#Produto" class="botao-banner" data-texto-site="botaoSlide3">Explore os produtos</a>
+              </div>
+            </article>
+          </div>
+
+          <div class="carrossel-controles">
+            <button class="carrossel-seta anterior" type="button" aria-label="Slide anterior">
+              <span aria-hidden="true">&#10094;</span>
+            </button>
+            <div class="carrossel-indicadores" aria-label="Escolher destaque">
+              <button class="ativo" type="button" aria-label="Ir para o slide 1" aria-current="true"></button>
+              <button type="button" aria-label="Ir para o slide 2"></button>
+              <button type="button" aria-label="Ir para o slide 3"></button>
+            </div>
+            <button class="carrossel-pausa" type="button" aria-label="Pausar carrossel" aria-pressed="false">
+              <span aria-hidden="true">&#10074;&#10074;</span>
+            </button>
+            <button class="carrossel-seta proximo" type="button" aria-label="Próximo slide">
+              <span aria-hidden="true">&#10095;</span>
+            </button>
+          </div>
+        </section>
+
+        <section class="colecao-inicial" data-area-site="colecao" aria-labelledby="colecao-inicial-titulo">
+          <div class="titulo-secao">
+            <div>
+              <span class="sobretitulo">ENCONTRE SEU RITMO</span>
+              <h2 id="colecao-inicial-titulo">EXPLORE A COLEÇÃO</h2>
+            </div>
+            <a class="link-secao" href="#Produto">VER TODOS OS PRODUTOS <span aria-hidden="true">&rarr;</span></a>
+          </div>
+          <div class="secao-cards">
+          <div class="card">
+            <img data-imagem-site="categoria1" src="imagens/figma/conjunto-preto.png" alt="Conjunto preto de top e legging esportiva">
+            <h3>Conjuntos</h3>
+            <p>Conforto do aquecimento ao fim do treino.</p>
+            <a class="link-categoria" href="#Produto">EXPLORAR <span aria-hidden="true">&rarr;</span></a>
+          </div>
+          <div class="card">
+            <img data-imagem-site="categoria2" src="imagens/figma/ajuste-conjunto-azul.png" alt="Conjunto esportivo azul com detalhes cruzados nas costas">
+            <h3>Tops &amp; Leggings</h3>
+            <p>Sustentação e liberdade para se movimentar.</p>
+            <a class="link-categoria" href="#Produto">EXPLORAR <span aria-hidden="true">&rarr;</span></a>
+          </div>
+          <div class="card">
+            <img data-imagem-site="categoria3" src="imagens/figma/conjunto-coral-shorts.png" alt="Conjunto esportivo coral com shorts">
+            <h3>Shorts</h3>
+            <p>Leveza para treinos de alta intensidade.</p>
+            <a class="link-categoria" href="#Produto">EXPLORAR <span aria-hidden="true">&rarr;</span></a>
+          </div>
+          <div class="card">
+            <img data-imagem-site="categoria4" src="imagens/figma/atleta-jaqueta-urbana.png" alt="Atleta usando jaqueta esportiva em ambiente urbano">
+            <h3>Jaquetas</h3>
+            <p>Uma camada extra para os dias mais frescos.</p>
+            <a class="link-categoria" href="#Produto">EXPLORAR <span aria-hidden="true">&rarr;</span></a>
+          </div>
+          </div>
+        </section>
+
+        <section class="movimento" id="Sobre" data-area-site="movimento" aria-labelledby="movimento-titulo">
+          <div class="titulo-secao">
+            <div>
+              <span class="sobretitulo">GAV FITWEAR</span>
+              <h2 id="movimento-titulo">ESTÉTICA EM MOVIMENTO</h2>
+            </div>
+            <p>Peças que acompanham você em cada desafio.</p>
+          </div>
+          <div class="galeria-movimento">
+            <a class="imagem-movimento destaque-movimento" href="#Produto">
+              <img data-imagem-site="galeria1" src="imagens/figma/treino-dupla-por-do-sol-preview.png" alt="Atleta correndo em uma pista urbana ao entardecer">
+              <span>A FORÇA DA SINERGIA</span>
+            </a>
+            <a class="imagem-movimento" href="#Produto">
+              <img data-imagem-site="galeria2" src="imagens/figma/atleta-estudio-preview.png" alt="Atleta treinando em um estúdio de concreto iluminado">
+              <span>LIBERDADE PARA IR MAIS LONGE</span>
+            </a>
+            <a class="imagem-movimento" href="#Produto"> 
+              <img data-imagem-site="galeria3" src="imagens/figma/corrida-urbana-preview.png" alt="Duas pessoas treinando em uma quadra ao pôr do sol">
+              <span>SEU RITMO. SUA HISTÓRIA.</span>
+            </a>
+          </div>
+        </section>
+
+        <img class="bannercentro" data-area-site="bannerCentro" data-imagem-site="bannerCentro" src="imagens/bannercentro.png" alt="Atleta correndo por uma trilha em meio à natureza" width="1265" height="450">
+
+        <section class="video-destaque" data-area-site="video" aria-label="Vídeo da GAV Store">
+          <iframe
+            src="https://www.youtube.com/embed/s7lfjcOwQko"
+            title="Vídeo da GAV Store"
+            allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share"
+            allowfullscreen>
+          </iframe>
+        </section>
+
+        <section class="manifesto" data-area-site="manifesto" aria-labelledby="manifesto-titulo">
+          <div class="titulo-secao">
+            <div>
+              <span class="sobretitulo">FEITO PARA A SUA ROTINA</span>
+              <h2 id="manifesto-titulo">DE QUEM VIVE EM AÇÃO</h2>
+            </div>
+            <p>Conforto e atitude em todos os seus movimentos.</p>
+          </div>
+          <div class="diferenciais">
+            <article class="diferencial">
+              <span class="diferencial-icone" aria-hidden="true">01</span>
+              <h3>Conforto em movimento</h3>
+              <p>Modelagens pensadas para acompanhar seu corpo durante o treino.</p>
+            </article>
+            <article class="diferencial">
+              <span class="diferencial-icone" aria-hidden="true">02</span>
+              <h3>Estilo que inspira</h3>
+              <p>Peças esportivas para você expressar sua personalidade.</p>
+            </article>
+            <article class="diferencial">
+              <span class="diferencial-icone" aria-hidden="true">03</span>
+              <h3>Do treino à rotina</h3>
+              <p>Versatilidade para seguir em movimento dentro e fora da academia.</p>
+            </article>
+          </div>
+        </section>
+
+        <section class="best-sellers" id="Produto" data-area-site="produtos" aria-labelledby="best-sellers-titulo">
+          <div class="titulo-secao">
+            <div>
+              <span class="sobretitulo">ESCOLHAS GAV</span>
+              <h2 id="best-sellers-titulo">O ESSENCIAL DA ALTA PERFORMANCE</h2>
+            </div>
+            <a class="link-secao" href="#Produto">VER COLEÇÃO <span aria-hidden="true">&rarr;</span></a>
+          </div>
+          <div class="secao-cards" id="lista-produtos" aria-live="polite"></div>
+          <p id="aviso-produtos" role="alert" aria-live="assertive"></p>
+        </section>
+
+        <section class="guia-tamanhos" data-area-site="guia" aria-labelledby="guia-tamanhos-titulo">
+          <img data-imagem-site="guia" src="imagens/figma/ajuste-conjunto-azul.png" alt="Atleta verificando o ajuste de um conjunto esportivo azul">
+          <div class="conteudo-guia">
+            <span class="sobretitulo">CONFORTO EM CADA DETALHE</span>
+            <h2 id="guia-tamanhos-titulo">O AJUSTE PERFEITO PARA VOCÊ</h2>
+            <p>Encontre seu próximo conjunto e escolha peças que acompanham seu ritmo, do treino à rotina.</p>
+            <a class="link-secao" href="#Produto">ENCONTRE SUA PEÇA <span aria-hidden="true">&rarr;</span></a>
+          </div>
+        </section>
+      </main>
+
+      <footer class="rodape" id="Contatos">
+        <div class="beneficios-rodape" data-area-site="beneficiosRodape" aria-label="Diferenciais da GAV Store">
+          <div><span aria-hidden="true">01</span><p><strong>Conforto para treinar</strong><br>Liberdade para se movimentar.</p></div>
+          <div><span aria-hidden="true">02</span><p><strong>Estilo GAV</strong><br>Performance com personalidade.</p></div>
+          <div><span aria-hidden="true">03</span><p><strong>Feito para você</strong><br>Do treino à sua rotina.</p></div>
+        </div>
+        <div class="rodape-conteudo">
+          <div class="rodape-marca">
+            <a class="marca-rodape" href="#Inicio">GAV<span>.</span></a>
+            <p>Performance e estilo para acompanhar seu movimento.</p>
+            <div class="redes-sociais" aria-label="Redes sociais da GAV Store">
+              <a href="https://www.instagram.com/" data-rede-social="instagram" target="_blank" rel="noopener noreferrer" aria-label="Instagram" title="Instagram">
+                <svg viewBox="0 0 24 24" aria-hidden="true">
+                  <rect x="3" y="3" width="18" height="18" rx="5"></rect>
+                  <circle cx="12" cy="12" r="4"></circle>
+                  <circle class="ponto-icone" cx="17.5" cy="6.5" r="1"></circle>
+                </svg>
+              </a>
+              <a href="https://www.facebook.com/" data-rede-social="facebook" target="_blank" rel="noopener noreferrer" aria-label="Facebook" title="Facebook">
+                <svg viewBox="0 0 24 24" aria-hidden="true">
+                  <path class="icone-preenchido" d="M13.4 21v-8h2.7l.4-3h-3.1V8.1c0-.9.3-1.5 1.6-1.5h1.7V3.9c-.3 0-1.3-.1-2.5-.1-2.5 0-4.2 1.5-4.2 4.3V10H7.2v3H10v8h3.4z"></path>
+                </svg>
+              </a>
+              <a href="https://www.whatsapp.com/" data-rede-social="whatsapp" target="_blank" rel="noopener noreferrer" aria-label="WhatsApp" title="WhatsApp">
+                <svg viewBox="0 0 24 24" aria-hidden="true">
+                  <path d="M20.5 11.8a8.5 8.5 0 0 1-12.6 7.4L3 20.5l1.4-4.7a8.5 8.5 0 1 1 16.1-4z"></path>
+                  <path d="M8.5 7.8c.2-.4.4-.4.7-.4h.4c.2 0 .3.1.4.4l.7 1.7c.1.2.1.4 0 .5l-.5.6c-.2.2-.2.3-.1.5.3.6.8 1.1 1.3 1.5.6.5 1.2.8 1.8 1 .2.1.4.1.5-.1l.7-.8c.2-.2.3-.2.5-.1l1.6.8c.2.1.3.2.3.4 0 .3-.2 1.2-.8 1.6-.5.4-1.1.6-1.8.5-.6-.1-1.4-.3-2.4-.8-1.3-.6-2.4-1.6-3.3-2.7-.9-1-1.4-2.2-1.5-3.1 0-.7.2-1.2.5-1.5z"></path>
+                </svg>
+              </a>
+            </div>
+          </div>
+          <nav class="rodape-links" aria-label="Links da loja">
+            <div>
+              <h3>LOJA</h3>
+              <a href="#Produto">Produtos</a>
+              <a href="#Sobre">Nossa coleção</a>
+              <a href="perfil.html">Minha conta</a>
+            </div>
+            <div>
+              <h3>AJUDA &amp; SUPORTE</h3>
+              <a href="carrinho.html">Carrinho</a>
+              <a href="#guia-tamanhos-titulo">Guia de tamanhos</a>
+              <a href="#Contatos">Contato</a>
+            </div>
+            <div>
+              <h3>GAV FITWEAR</h3>
+              <a href="#Sobre">Nossa essência</a>
+              <a href="#Inicio">Voltar ao início</a>
+            </div>
+          </nav>
+        </div>
+        <div class="rodape-final">
+          <p>&copy; 2026 GAV Store. Todos os direitos reservados.</p>
+          <a href="#Inicio">VOLTAR AO TOPO &uarr;</a>
+        </div>
+      </footer>
+      <script src="tema.js"></script>
+      <script src="carrossel.js"></script>
+      <script src="catalogo.js"></script>
+      <script src="carrinho.js"></script>
+      <script src="site-config.js"></script>
+      <script src="metricas.js"></script>
+</body>
+</html>
