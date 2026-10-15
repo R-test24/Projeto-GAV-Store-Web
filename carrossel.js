@@ -13,7 +13,7 @@ if (carrossel) {
   let focoNoCarrossel = false;
   let temporizador;
 
-  function mostrarSlide(indice) {
+  function mostrarSlide(indice, anunciar = false) {
     indiceAtual = (indice + slides.length) % slides.length;
 
     slides.forEach((slide, posicao) => {
@@ -29,6 +29,16 @@ if (carrossel) {
         indicadores[posicao].removeAttribute("aria-current");
       }
     });
+
+    if (anunciar) {
+      carrossel.querySelector("#aviso-carrossel").textContent =
+        `Destaque ${indiceAtual + 1} de ${slides.length}.`;
+    }
+  }
+
+  function pausarParaInteracao() {
+    rotacaoPausada = true;
+    atualizarBotaoPausa();
   }
 
   function pararRotacao() {
@@ -59,18 +69,21 @@ if (carrossel) {
   }
 
   botaoAnterior.addEventListener("click", () => {
-    mostrarSlide(indiceAtual - 1);
+    pausarParaInteracao();
+    mostrarSlide(indiceAtual - 1, true);
     iniciarRotacao();
   });
 
   botaoProximo.addEventListener("click", () => {
-    mostrarSlide(indiceAtual + 1);
+    pausarParaInteracao();
+    mostrarSlide(indiceAtual + 1, true);
     iniciarRotacao();
   });
 
   indicadores.forEach((indicador, indice) => {
     indicador.addEventListener("click", () => {
-      mostrarSlide(indice);
+      pausarParaInteracao();
+      mostrarSlide(indice, true);
       iniciarRotacao();
     });
   });
@@ -106,7 +119,9 @@ if (carrossel) {
   document.addEventListener("visibilitychange", iniciarRotacao);
 
   prefereMovimentoReduzido.addEventListener("change", (evento) => {
-    rotacaoPausada = evento.matches;
+    if (evento.matches) {
+      rotacaoPausada = true;
+    }
     atualizarBotaoPausa();
     iniciarRotacao();
   });

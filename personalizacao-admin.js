@@ -1,6 +1,7 @@
 const formularioPersonalizacao = document.querySelector("#formulario-personalizacao");
 const avisoPersonalizacao = document.querySelector("#aviso-personalizacao");
 const camposImagemSite = [...document.querySelectorAll("[data-imagem-site]")];
+const camposTextoAlternativoSite = [...document.querySelectorAll("[data-texto-alternativo-site]")];
 const imagensPendentesSite = new Map();
 
 function informarPersonalizacao(mensagem, erro) {
@@ -61,6 +62,9 @@ function carregarFormularioPersonalizacao() {
     document.querySelectorAll("[data-secao-site]").forEach((campo) => {
       campo.checked = config.secoes[campo.dataset.secaoSite] !== false;
     });
+    camposTextoAlternativoSite.forEach((campo) => {
+      campo.value = config.textosAlternativos[campo.dataset.textoAlternativoSite] || "";
+    });
 
     camposImagemSite.forEach((campo) => {
       const imagem = config.imagens[campo.dataset.imagemSite];
@@ -110,6 +114,12 @@ formularioPersonalizacao.addEventListener("submit", (evento) => {
       facebook: document.querySelector("#link-facebook").value.trim(),
       whatsapp: document.querySelector("#link-whatsapp").value.trim(),
     };
+    config.textosAlternativos = Object.fromEntries(
+      camposTextoAlternativoSite.map((campo) => [
+        campo.dataset.textoAlternativoSite,
+        campo.value.trim(),
+      ])
+    );
     for (const endereco of Object.values(config.redes)) {
       if (!/^https?:\/\/\S+$/i.test(endereco)) {
         throw new Error("Informe links completos que comecem com https:// ou http:// para as redes sociais.");

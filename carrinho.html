@@ -8,6 +8,7 @@
   <link rel="stylesheet" href="style.css">
 </head>
 <body>
+  <a class="atalho-conteudo" href="#conteudo-principal">Pular para o conteúdo principal</a>
   <header class="cabecalho">
     <a class="link-logo" href="index.html" aria-label="GAV Store - página inicial">
       <img class="logo-imagem" src="imagens/logo3d.png" alt="Logo da GAV Store" width="70" height="70">
@@ -31,7 +32,7 @@
     </div>
   </header>
 
-  <main class="pagina-carrinho">
+  <main id="conteudo-principal" class="pagina-carrinho" tabindex="-1">
     <div class="cabecalho-carrinho">
       <span class="selo-cadastro">GAV STORE</span>
       <h1>Carrinho e dados de compra</h1>
@@ -41,11 +42,11 @@
     <div class="layout-carrinho">
       <section class="cartao-carrinho" aria-labelledby="titulo-resumo-carrinho">
         <div class="titulo-cartao-carrinho">
-          <h2 id="titulo-resumo-carrinho">Seu carrinho</h2>
+          <h2 id="titulo-resumo-carrinho" tabindex="-1">Seu carrinho</h2>
           <a href="index.html#Produto">Continuar comprando</a>
         </div>
-        <div class="lista-carrinho" id="lista-carrinho" aria-live="polite"></div>
-        <div class="total-carrinho">
+        <div class="lista-carrinho" id="lista-carrinho"></div>
+        <div class="total-carrinho" aria-live="polite" aria-atomic="true">
           <span>Subtotal</span>
           <strong id="total-carrinho">R$ 0,00</strong>
         </div>

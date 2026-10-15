@@ -8,7 +8,7 @@ const chavePerfil = "gavstore.perfil";
 
 let perfilAtual = null;
 
-function mostrarPerfil(perfil) {
+function mostrarPerfil(perfil, focarTitulo = false) {
   perfilAtual = perfil;
   document.querySelector("#boas-vindas-perfil").textContent = `Olá, ${perfil.nome}. Seus dados para a compra estão prontos.`;
   document.querySelector("#perfil-nome").textContent = perfil.nome;
@@ -16,6 +16,9 @@ function mostrarPerfil(perfil) {
   document.querySelector("#perfil-telefone").textContent = perfil.telefone;
   painelPerfil.hidden = false;
   cartaoCadastro.hidden = true;
+  if (focarTitulo) {
+    document.querySelector("#titulo-perfil").focus();
+  }
 }
 
 function carregarPerfil() {
@@ -70,6 +73,7 @@ document.querySelector("#editar-perfil").addEventListener("click", () => {
   avisoCadastro.textContent = "Os dados serão atualizados somente neste navegador.";
   painelPerfil.hidden = true;
   cartaoCadastro.hidden = false;
+  document.querySelector("#nome").focus();
 });
 
 formularioCadastro.addEventListener("submit", (evento) => {
@@ -98,7 +102,7 @@ formularioCadastro.addEventListener("submit", (evento) => {
   }
 
   if (estaEditando) {
-    mostrarPerfil(perfil);
+    mostrarPerfil(perfil, true);
     return;
   }
 

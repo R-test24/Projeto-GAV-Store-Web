@@ -1,0 +1,66 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta name="description" content="Pesquise roupas esportivas e produtos da GAV Store.">
+  <title>Pesquisar produtos | GAV Store</title>
+  <link rel="stylesheet" href="style.css">
+</head>
+<body>
+  <a class="atalho-conteudo" href="#conteudo-principal">Pular para o conteúdo principal</a>
+  <header class="cabecalho">
+    <a class="link-logo" href="index.html#Inicio" aria-label="GAV Store - página inicial">
+      <img class="logo-imagem" src="imagens/logo3d.png" alt="Logo da GAV Store" width="70" height="70">
+    </a>
+    <a class="carrinho" href="carrinho.html" aria-label="Carrinho de compras" title="Carrinho">
+      <img src="imagens/carrinho.png" alt="">
+    </a>
+    <a class="perfil" href="perfil.html" aria-label="Minha conta" title="Minha conta">
+      <img src="imagens/perfil.png" alt="">
+    </a>
+    <a class="lupa" href="pesquisa.html" aria-label="Pesquisar no site" aria-current="page" title="Pesquisar">
+      <img src="imagens/lupa.png" alt="">
+    </a>
+    <button class="alternar-tema" type="button" aria-label="Ativar tema escuro" aria-pressed="false"></button>
+    <div id="topo">
+      <nav class="menu" aria-label="Navegação principal">
+        <a href="index.html#Inicio">INÍCIO</a>
+        <a href="index.html#Produto">PRODUTOS</a>
+        <a href="index.html#Sobre">SOBRE</a>
+        <a href="index.html#Contatos">CONTATOS</a>
+      </nav>
+    </div>
+  </header>
+
+  <main id="conteudo-principal" class="pagina-pesquisa" tabindex="-1">
+    <header class="cabecalho-pesquisa">
+      <span class="selo-cadastro">GAV STORE</span>
+      <h1>Pesquisar produtos</h1>
+      <p>Encontre peças para acompanhar seu treino e sua rotina.</p>
+    </header>
+    <form id="formulario-pesquisa" class="formulario-pesquisa" role="search">
+      <label for="termo-pesquisa">Nome do produto</label>
+      <div class="campo-pesquisa">
+        <input id="termo-pesquisa" name="q" type="search" autocomplete="off" aria-describedby="instrucao-pesquisa">
+        <button class="botao-cadastro" type="submit">Pesquisar</button>
+      </div>
+      <p id="instrucao-pesquisa" class="instrucao-pesquisa">Os resultados são filtrados enquanto você digita.</p>
+    </form>
+    <section class="resultados-pesquisa" aria-labelledby="titulo-resultados">
+      <h2 id="titulo-resultados">Produtos</h2>
+      <p id="estado-pesquisa" role="status" aria-live="polite"></p>
+      <p id="sem-resultados" class="estado-sem-resultados" hidden>Nenhum produto encontrado. Tente outro termo.</p>
+      <div class="secao-cards" id="lista-produtos" aria-label="Resultados da pesquisa"></div>
+    </section>
+  </main>
+
+  <footer class="rodape rodape-simples">
+    <p>&copy; 2026 GAV Store. Todos os direitos reservados.</p>
+  </footer>
+  <script src="tema.js"></script>
+  <script src="catalogo.js"></script>
+  <script src="carrinho.js"></script>
+  <script src="pesquisa.js"></script>
+</body>
+</html>

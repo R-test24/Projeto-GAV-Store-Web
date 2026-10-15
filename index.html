@@ -3,11 +3,13 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>GAV Store</title>
+    <meta name="description" content="Roupas esportivas GAV Store para acompanhar seu movimento, do treino à rotina.">
+    <title>GAV Store | Moda esportiva</title>
     <link rel="stylesheet" href="style.css">
     
 </head>
 <body id="Inicio">
+    <a class="atalho-conteudo" href="#conteudo-principal">Pular para o conteúdo principal</a>
     <header class="cabecalho">
       <a class="link-logo" href="#Inicio" aria-label="GAV Store - início">
         <img class="logo-imagem" src="imagens/logo3d.png" alt="Logo da GAV Store" width="150" height="150">
@@ -24,19 +26,21 @@
       </a>
       <button class="alternar-tema" type="button" aria-label="Ativar tema escuro" aria-pressed="false"></button>
                 <div id="topo">
-            <nav class="menu"> 
+            <nav class="menu" aria-label="Navegação principal"> 
                 <a href="#Inicio">INÍCIO</a>
                 <a href="#Produto" data-menu-site="produtos">PRODUTOS</a>
                 <a href="#Sobre" data-menu-site="menuSobre">SOBRE</a>
                 <a href="#Contatos" data-menu-site="menuContatos">CONTATOS</a>
+                <a class="link-admin-publico" href="menu.html" target="_blank" rel="noopener noreferrer" aria-label="Abrir painel administrativo em uma nova aba">Acesse o Admin</a>
             </nav>
 
         </div>
       </header>
 
-      <main>
+      <main id="conteudo-principal" tabindex="-1">
         <section class="carrossel" data-area-site="carrossel" aria-label="Destaques da GAV Store" aria-roledescription="carrossel">
-          <div class="carrossel-slides">
+          <h1 class="texto-acessivel">Moda esportiva GAV Store</h1>
+          <div class="carrossel-slides" id="destaques-slides" aria-live="off">
             <article class="carrossel-slide ativo" aria-label="1 de 3" aria-roledescription="slide" aria-hidden="false">
               <img data-imagem-site="slide1" src="imagens/banner.png" alt="Atleta correndo em uma pista urbana ao entardecer">
               <a class="botao-banner" data-texto-site="botaoSlide1" href="#Produto">Ver coleção <span aria-hidden="true">&rarr;</span></a>
@@ -48,7 +52,7 @@
               <img data-imagem-site="slide3" src="imagens/figma/treino-dupla-por-do-sol.png" alt="Duas pessoas treinando em uma quadra ao pôr do sol">
               <div class="carrossel-legenda">
                 <span>FEITO PARA VOCÊ</span>
-                <h1>Seu movimento, suas regras.</h1>
+                <h2>Seu movimento, suas regras.</h2>
                 <p data-texto-site="descricaoSlide">Encontre peças que acompanham cada treino.</p>
                 <a href="#Produto" class="botao-banner" data-texto-site="botaoSlide3">Explore os produtos</a>
               </div>
@@ -56,21 +60,22 @@
           </div>
 
           <div class="carrossel-controles">
-            <button class="carrossel-seta anterior" type="button" aria-label="Slide anterior">
+            <button class="carrossel-seta anterior" type="button" aria-label="Slide anterior" aria-controls="destaques-slides">
               <span aria-hidden="true">&#10094;</span>
             </button>
-            <div class="carrossel-indicadores" aria-label="Escolher destaque">
-              <button class="ativo" type="button" aria-label="Ir para o slide 1" aria-current="true"></button>
-              <button type="button" aria-label="Ir para o slide 2"></button>
-              <button type="button" aria-label="Ir para o slide 3"></button>
+            <div class="carrossel-indicadores" role="group" aria-label="Escolher destaque">
+              <button class="ativo" type="button" aria-label="Ir para o slide 1" aria-controls="destaques-slides" aria-current="true"></button>
+              <button type="button" aria-label="Ir para o slide 2" aria-controls="destaques-slides"></button>
+              <button type="button" aria-label="Ir para o slide 3" aria-controls="destaques-slides"></button>
             </div>
-            <button class="carrossel-pausa" type="button" aria-label="Pausar carrossel" aria-pressed="false">
+            <button class="carrossel-pausa" type="button" aria-label="Pausar carrossel" aria-pressed="false" aria-controls="destaques-slides">
               <span aria-hidden="true">&#10074;&#10074;</span>
             </button>
-            <button class="carrossel-seta proximo" type="button" aria-label="Próximo slide">
+            <button class="carrossel-seta proximo" type="button" aria-label="Próximo slide" aria-controls="destaques-slides">
               <span aria-hidden="true">&#10095;</span>
             </button>
           </div>
+          <p class="texto-acessivel" id="aviso-carrossel" role="status" aria-live="polite"></p>
         </section>
 
         <section class="colecao-inicial" data-area-site="colecao" aria-labelledby="colecao-inicial-titulo">
@@ -119,7 +124,7 @@
           </div>
           <div class="galeria-movimento">
             <a class="imagem-movimento destaque-movimento" href="#Produto">
-              <img data-imagem-site="galeria1" src="imagens/figma/treino-dupla-por-do-sol-preview.png" alt="Atleta correndo em uma pista urbana ao entardecer">
+              <img data-imagem-site="galeria1" src="imagens/figma/treino-dupla-por-do-sol-preview.png" alt="Duas pessoas treinando juntas ao pôr do sol">
               <span>A FORÇA DA SINERGIA</span>
             </a>
             <a class="imagem-movimento" href="#Produto">
@@ -127,7 +132,7 @@
               <span>LIBERDADE PARA IR MAIS LONGE</span>
             </a>
             <a class="imagem-movimento" href="#Produto"> 
-              <img data-imagem-site="galeria3" src="imagens/figma/corrida-urbana-preview.png" alt="Duas pessoas treinando em uma quadra ao pôr do sol">
+              <img data-imagem-site="galeria3" src="imagens/figma/corrida-urbana-preview.png" alt="Atleta correndo em uma via urbana">
               <span>SEU RITMO. SUA HISTÓRIA.</span>
             </a>
           </div>
@@ -179,7 +184,7 @@
             </div>
             <a class="link-secao" href="#Produto">VER COLEÇÃO <span aria-hidden="true">&rarr;</span></a>
           </div>
-          <div class="secao-cards" id="lista-produtos" aria-live="polite"></div>
+          <div class="secao-cards" id="lista-produtos"></div>
           <p id="aviso-produtos" role="alert" aria-live="assertive"></p>
         </section>
 
@@ -195,7 +200,7 @@
       </main>
 
       <footer class="rodape" id="Contatos">
-        <div class="beneficios-rodape" data-area-site="beneficiosRodape" aria-label="Diferenciais da GAV Store">
+        <div class="beneficios-rodape" data-area-site="beneficiosRodape" role="group" aria-label="Diferenciais da GAV Store">
           <div><span aria-hidden="true">01</span><p><strong>Conforto para treinar</strong><br>Liberdade para se movimentar.</p></div>
           <div><span aria-hidden="true">02</span><p><strong>Estilo GAV</strong><br>Performance com personalidade.</p></div>
           <div><span aria-hidden="true">03</span><p><strong>Feito para você</strong><br>Do treino à sua rotina.</p></div>
@@ -204,7 +209,7 @@
           <div class="rodape-marca">
             <a class="marca-rodape" href="#Inicio">GAV<span>.</span></a>
             <p>Performance e estilo para acompanhar seu movimento.</p>
-            <div class="redes-sociais" aria-label="Redes sociais da GAV Store">
+            <div class="redes-sociais" role="group" aria-label="Redes sociais da GAV Store">
               <a href="https://www.instagram.com/" data-rede-social="instagram" target="_blank" rel="noopener noreferrer" aria-label="Instagram" title="Instagram">
                 <svg viewBox="0 0 24 24" aria-hidden="true">
                   <rect x="3" y="3" width="18" height="18" rx="5"></rect>

@@ -144,6 +144,7 @@ function renderizarCarrinho() {
     remover.type = "button";
     remover.className = "remover-item-carrinho";
     remover.textContent = "Remover";
+    remover.setAttribute("aria-label", `Remover ${item.nome} do carrinho`);
     remover.dataset.removerItem = String(indice);
 
     detalhes.append(nome, preco, quantidade, remover);
@@ -272,6 +273,7 @@ document.querySelector("#lista-carrinho")?.addEventListener("change", (evento) =
     salvarCarrinho(itens);
     document.querySelector("#aviso-carrinho").textContent = "";
     renderizarCarrinho();
+    document.querySelector(`[data-quantidade-item="${indice}"]`)?.focus();
   } catch (erro) {
     mostrarErroCarrinho(`Não foi possível atualizar o carrinho. ${erro.message}`);
   }
@@ -285,10 +287,17 @@ document.querySelector("#lista-carrinho")?.addEventListener("click", (evento) =>
 
   try {
     const itens = lerCarrinho();
-    itens.splice(Number(botao.dataset.removerItem), 1);
+    const indiceRemovido = Number(botao.dataset.removerItem);
+    itens.splice(indiceRemovido, 1);
     salvarCarrinho(itens);
     document.querySelector("#aviso-carrinho").textContent = "Produto removido do carrinho.";
     renderizarCarrinho();
+    if (itens.length > 0) {
+      const indiceParaFocar = Math.min(indiceRemovido, itens.length - 1);
+      document.querySelector(`[data-remover-item="${indiceParaFocar}"]`)?.focus();
+    } else {
+      document.querySelector("#titulo-resumo-carrinho")?.focus();
+    }
   } catch (erro) {
     mostrarErroCarrinho(`Não foi possível remover o produto. ${erro.message}`);
   }

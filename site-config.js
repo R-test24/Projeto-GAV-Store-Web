@@ -15,6 +15,20 @@
       galeria3: "imagens/figma/corrida-urbana-preview.png",
       guia: "imagens/figma/ajuste-conjunto-azul.png",
     },
+    textosAlternativos: {
+      slide1: "Atleta correndo em uma pista urbana ao entardecer",
+      slide2: "Atleta treinando em um estúdio de concreto iluminado",
+      slide3: "Duas pessoas treinando em uma quadra ao pôr do sol",
+      bannerCentro: "Atleta correndo por uma trilha em meio à natureza",
+      categoria1: "Conjunto preto de top e legging esportiva",
+      categoria2: "Conjunto esportivo azul com detalhes cruzados nas costas",
+      categoria3: "Conjunto esportivo coral com shorts",
+      categoria4: "Atleta usando jaqueta esportiva em ambiente urbano",
+      galeria1: "Duas pessoas treinando juntas ao pôr do sol",
+      galeria2: "Atleta treinando em um estúdio de concreto iluminado",
+      galeria3: "Atleta correndo em uma via urbana",
+      guia: "Atleta verificando o ajuste de um conjunto esportivo azul",
+    },
     tituloSlide: "Seu movimento, suas regras.",
     descricaoSlide: "Encontre peças que acompanham cada treino.",
     botaoSlide1: "Ver coleção",
@@ -52,6 +66,7 @@
       typeof config !== "object" ||
       !config.imagens ||
       typeof config.imagens !== "object" ||
+      (config.textosAlternativos !== undefined && typeof config.textosAlternativos !== "object") ||
       (config.redes !== undefined && typeof config.redes !== "object") ||
       !config.secoes ||
       typeof config.secoes !== "object"
@@ -63,6 +78,7 @@
       ...structuredClone(padrao),
       ...config,
       imagens: { ...padrao.imagens, ...config.imagens },
+      textosAlternativos: { ...padrao.textosAlternativos, ...config.textosAlternativos },
       redes: { ...padrao.redes, ...config.redes },
       secoes: { ...padrao.secoes, ...config.secoes },
     };
@@ -86,7 +102,7 @@
       const config = ler();
       const carrossel = document.querySelector(".carrossel");
       if (carrossel) {
-        const titulo = carrossel.querySelector(".carrossel-legenda h1");
+        const titulo = carrossel.querySelector(".carrossel-legenda h2");
         if (titulo) {
           titulo.textContent = config.tituloSlide;
         }
@@ -104,10 +120,15 @@
         }
       });
 
-      document.querySelectorAll("[data-imagem-site]").forEach((imagem) => {
-        const personalizada = config.imagens[imagem.dataset.imagemSite];
+      document.querySelectorAll("img[data-imagem-site]").forEach((imagem) => {
+        const chave = imagem.dataset.imagemSite;
+        const personalizada = config.imagens[chave];
         if (personalizada) {
           imagem.src = personalizada;
+        }
+        const textoAlternativo = config.textosAlternativos[chave];
+        if (typeof textoAlternativo === "string") {
+          imagem.alt = textoAlternativo;
         }
       });
 

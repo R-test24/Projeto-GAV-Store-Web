@@ -8,6 +8,7 @@
   <link rel="stylesheet" href="painel-admin.css">
 </head>
 <body>
+  <a class="atalho-conteudo" href="#conteudo-principal">Pular para o conteúdo principal</a>
   <div class="painel-layout">
     <aside class="barra-lateral">
       <a class="marca" href="index.html" aria-label="GAV Store - voltar para a loja">
@@ -22,7 +23,7 @@
       <a class="voltar-loja" href="index.html"><span aria-hidden="true">←</span> Voltar para a loja</a>
     </aside>
 
-    <main class="conteudo-painel">
+    <main id="conteudo-principal" class="conteudo-painel" tabindex="-1">
       <header class="cabecalho-painel">
         <div>
           <span class="sobretitulo-painel">GAV STORE · ADMINISTRAÇÃO</span>
@@ -46,7 +47,7 @@
           <span class="atualizacao-painel">Atualizado neste navegador</span>
         </div>
 
-        <div class="grade-indicadores" aria-live="polite">
+        <div class="grade-indicadores">
           <article class="cartao-indicador">
             <span class="icone-indicador icone-visitas" aria-hidden="true">↗</span>
             <p>Acessos à loja</p>
@@ -110,6 +111,7 @@
               </select>
             </label>
           </div>
+          <p id="resultado-filtro-produtos" class="estado-filtro-produtos" role="status" aria-live="polite"></p>
           <div class="tabela-responsiva">
             <table>
               <thead>
@@ -241,6 +243,65 @@
               </div>
             </div>
             <p class="ajuda-personalizacao">Os banners ocupam espaço de armazenamento neste navegador. Prefira imagens leves; a ferramenta ajusta o tamanho automaticamente.</p>
+          </section>
+
+          <section class="cartao-personalizacao" aria-labelledby="titulo-textos-alternativos">
+            <div class="cabecalho-tabela">
+              <div>
+                <h3 id="titulo-textos-alternativos">Descrições das imagens</h3>
+                <p id="ajuda-textos-alternativos">Descreva o conteúdo importante de cada foto para quem usa leitor de tela. Deixe em branco somente quando a imagem for decorativa.</p>
+              </div>
+            </div>
+            <div class="campos-textos-site">
+              <div class="campo-produto">
+                <label for="alt-slide1">Descrição do banner 1</label>
+                <input id="alt-slide1" type="text" maxlength="180" data-texto-alternativo-site="slide1" aria-describedby="ajuda-textos-alternativos">
+              </div>
+              <div class="campo-produto">
+                <label for="alt-slide2">Descrição do banner 2</label>
+                <input id="alt-slide2" type="text" maxlength="180" data-texto-alternativo-site="slide2" aria-describedby="ajuda-textos-alternativos">
+              </div>
+              <div class="campo-produto">
+                <label for="alt-slide3">Descrição do banner 3</label>
+                <input id="alt-slide3" type="text" maxlength="180" data-texto-alternativo-site="slide3" aria-describedby="ajuda-textos-alternativos">
+              </div>
+              <div class="campo-produto">
+                <label for="alt-banner-centro">Descrição do banner central</label>
+                <input id="alt-banner-centro" type="text" maxlength="180" data-texto-alternativo-site="bannerCentro" aria-describedby="ajuda-textos-alternativos">
+              </div>
+              <div class="campo-produto">
+                <label for="alt-categoria1">Descrição da imagem de Conjuntos</label>
+                <input id="alt-categoria1" type="text" maxlength="180" data-texto-alternativo-site="categoria1" aria-describedby="ajuda-textos-alternativos">
+              </div>
+              <div class="campo-produto">
+                <label for="alt-categoria2">Descrição da imagem de Tops e leggings</label>
+                <input id="alt-categoria2" type="text" maxlength="180" data-texto-alternativo-site="categoria2" aria-describedby="ajuda-textos-alternativos">
+              </div>
+              <div class="campo-produto">
+                <label for="alt-categoria3">Descrição da imagem de Shorts</label>
+                <input id="alt-categoria3" type="text" maxlength="180" data-texto-alternativo-site="categoria3" aria-describedby="ajuda-textos-alternativos">
+              </div>
+              <div class="campo-produto">
+                <label for="alt-categoria4">Descrição da imagem de Jaquetas</label>
+                <input id="alt-categoria4" type="text" maxlength="180" data-texto-alternativo-site="categoria4" aria-describedby="ajuda-textos-alternativos">
+              </div>
+              <div class="campo-produto">
+                <label for="alt-galeria1">Descrição da imagem de galeria 1</label>
+                <input id="alt-galeria1" type="text" maxlength="180" data-texto-alternativo-site="galeria1" aria-describedby="ajuda-textos-alternativos">
+              </div>
+              <div class="campo-produto">
+                <label for="alt-galeria2">Descrição da imagem de galeria 2</label>
+                <input id="alt-galeria2" type="text" maxlength="180" data-texto-alternativo-site="galeria2" aria-describedby="ajuda-textos-alternativos">
+              </div>
+              <div class="campo-produto">
+                <label for="alt-galeria3">Descrição da imagem de galeria 3</label>
+                <input id="alt-galeria3" type="text" maxlength="180" data-texto-alternativo-site="galeria3" aria-describedby="ajuda-textos-alternativos">
+              </div>
+              <div class="campo-produto">
+                <label for="alt-guia">Descrição da imagem do guia</label>
+                <input id="alt-guia" type="text" maxlength="180" data-texto-alternativo-site="guia" aria-describedby="ajuda-textos-alternativos">
+              </div>
+            </div>
           </section>
 
           <section class="cartao-personalizacao" aria-labelledby="titulo-textos-site">

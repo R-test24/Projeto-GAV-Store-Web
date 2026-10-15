@@ -131,6 +131,7 @@ function criarLinhaProduto(produto) {
 function filtrarTabelaProdutos() {
   const busca = document.querySelector("#buscar-produtos").value.trim().toLocaleLowerCase("pt-BR");
   const filtroEstoque = document.querySelector("#filtro-estoque").value;
+  const avisoFiltro = document.querySelector("#resultado-filtro-produtos");
   let produtosVisiveis = 0;
 
   for (const linha of corpoTabelaProdutos.querySelectorAll("[data-produto-id]")) {
@@ -150,6 +151,9 @@ function filtrarTabelaProdutos() {
   if (vazio) {
     vazio.hidden = produtosVisiveis > 0;
   }
+  avisoFiltro.textContent = busca || filtroEstoque !== "todos"
+    ? `${produtosVisiveis} ${produtosVisiveis === 1 ? "produto encontrado" : "produtos encontrados"} com os filtros atuais.`
+    : "";
 }
 
 function renderizarTabelaProdutos() {

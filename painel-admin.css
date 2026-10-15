@@ -3,10 +3,39 @@
   --fundo: #f5f6f8;
   --cartao: #ffffff;
   --texto: #202124;
-  --texto-suave: #747982;
+  --texto-suave: #686868;
   --borda: #e8e9ed;
   --laranja: #f29d0b;
   --escuro: #101114;
+}
+
+.botao-editar-produto,
+.botao-excluir-produto,
+.botao-principal,
+.botao-cancelar,
+.botao-adicionar-imagem {
+  min-height: 44px;
+}
+
+.botao-fechar-dialogo {
+  min-width: 44px;
+}
+
+@media (prefers-reduced-motion: reduce) {
+  *,
+  *::before,
+  *::after {
+    scroll-behavior: auto !important;
+    animation-duration: 0.01ms !important;
+    animation-iteration-count: 1 !important;
+    transition-duration: 0.01ms !important;
+  }
+}
+
+@media (forced-colors: active) {
+  :where(a, button, input, select, textarea, summary, [tabindex]):focus-visible {
+    outline: 3px solid Highlight;
+  }
 }
 
 .ferramentas-catalogo {
@@ -36,16 +65,16 @@
 
 .busca-produtos input {
   width: 100%;
-  height: 37px;
+  min-height: 44px;
   border: 0;
-  outline: 0;
   color: var(--texto);
   font-size: 12px;
 }
 
 .busca-produtos:focus-within {
-  border-color: #d88d00;
-  outline: 3px solid rgba(242, 157, 11, 0.16);
+  border-color: #075fcc;
+  outline: 3px solid #075fcc;
+  outline-offset: 2px;
 }
 
 .filtro-estoque {
@@ -59,7 +88,7 @@
 }
 
 .filtro-estoque select {
-  min-height: 37px;
+  min-height: 44px;
   max-width: 210px;
   padding: 0 10px;
   border: 1px solid #dfe0e4;
@@ -83,9 +112,47 @@ body {
   font-family: Arial, Helvetica, sans-serif;
 }
 
+.atalho-conteudo {
+  position: fixed;
+  z-index: 1000;
+  top: 8px;
+  left: 8px;
+  padding: 12px 16px;
+  transform: translateY(calc(-100% - 16px));
+  border-radius: 4px;
+  background: #fff;
+  color: #171717;
+  font-weight: 700;
+  text-decoration: underline;
+}
+
+.atalho-conteudo:focus {
+  transform: translateY(0);
+}
+
+:where(a, button, input, select, textarea, summary, [tabindex]):focus-visible {
+  outline: 3px solid #075fcc;
+  outline-offset: 3px;
+  box-shadow: 0 0 0 6px #fff;
+}
+
+.conteudo-painel,
+.secao-painel {
+  scroll-margin-top: 1rem;
+}
+
 button,
-input {
+input,
+select,
+textarea {
   font: inherit;
+}
+
+button,
+input,
+select,
+textarea {
+  accent-color: #8a5700;
 }
 
 .painel-layout {
@@ -213,7 +280,7 @@ input {
 }
 
 .sobretitulo-painel {
-  color: #a46a00;
+  color: #805000;
 }
 
 .status-demo {
@@ -406,7 +473,7 @@ table {
 th {
   padding: 12px 20px;
   background: #fafafa;
-  color: #737781;
+  color: #62666e;
   font-size: 10px;
   letter-spacing: 0.08em;
   text-transform: uppercase;
@@ -462,17 +529,17 @@ td:last-child {
 
 .estoque-disponivel {
   background: #eaf6ee;
-  color: #31834b;
+  color: #216335;
 }
 
 .estoque-baixo {
   background: #fff4de;
-  color: #996000;
+  color: #765000;
 }
 
 .estoque-zerado {
   background: #fcecec;
-  color: #a23d3d;
+  color: #8b2929;
 }
 
 .estado-vazio {
@@ -482,9 +549,21 @@ td:last-child {
   line-height: 1.5;
 }
 
-.campo-produto input:focus {
-  border-color: #d88d00;
-  outline: 3px solid rgba(242, 157, 11, 0.16);
+.estado-filtro-produtos {
+  min-height: 0;
+  margin: 0;
+  padding: 0 20px;
+  color: #41444b;
+  font-size: 13px;
+}
+
+.estado-filtro-produtos:empty {
+  display: none;
+}
+
+.campo-produto input:focus-visible {
+  border-color: #075fcc;
+  outline: 3px solid #075fcc;
 }
 
 .acoes-produto {
@@ -674,8 +753,9 @@ td:last-child {
 }
 
 .campo-produto textarea:focus {
-  border-color: #d88d00;
-  outline: 3px solid rgba(242, 157, 11, 0.16);
+  border-color: #075fcc;
+  outline: 3px solid #075fcc;
+  outline-offset: 2px;
 }
 
 .opcoes-secoes-site {
@@ -753,7 +833,7 @@ td:last-child {
 .campo-produto input {
   width: 100%;
   min-width: 0;
-  height: 39px;
+  min-height: 44px;
   padding: 0 10px;
   border: 1px solid #d9dbe0;
   border-radius: 5px;
@@ -764,13 +844,13 @@ td:last-child {
 
 .campo-produto input[type="file"] {
   height: auto;
-  min-height: 39px;
+  min-height: 44px;
   padding: 6px;
 }
 
 .campo-produto input[type="file"]::file-selector-button,
 .seletor-arquivo-imagem input[type="file"]::file-selector-button {
-  min-height: 28px;
+  min-height: 36px;
   margin-right: 8px;
   padding: 0 10px;
   border: 1px solid #e6d2a8;
@@ -790,7 +870,7 @@ td:last-child {
 
 .botao-principal {
   display: inline-flex;
-  min-height: 39px;
+  min-height: 44px;
   align-items: center;
   justify-content: center;
   gap: 8px;
@@ -876,8 +956,8 @@ td:last-child {
 }
 
 .botao-fechar-dialogo {
-  width: 34px;
-  height: 34px;
+  width: 44px;
+  height: 44px;
   flex: 0 0 auto;
   border: 1px solid var(--borda);
   border-radius: 50%;
@@ -996,7 +1076,8 @@ td:last-child {
 
 .controle-ajuste-imagem input[type="range"] {
   width: 100%;
-  height: 18px;
+  min-height: 32px;
+  height: 32px;
   margin: 0;
   accent-color: #d88d00;
 }
@@ -1004,7 +1085,7 @@ td:last-child {
 .botao-remover-imagem {
   grid-column: 2;
   justify-self: start;
-  min-height: 31px;
+  min-height: 44px;
   padding: 0 9px;
   border: 1px solid #e4e5e8;
   border-radius: 5px;
@@ -1022,7 +1103,7 @@ td:last-child {
 
 .botao-adicionar-imagem {
   justify-self: start;
-  min-height: 34px;
+  min-height: 44px;
   padding: 0 10px;
   border: 1px dashed #d2a451;
   border-radius: 5px;
@@ -1046,7 +1127,7 @@ td:last-child {
 .seletor-arquivo-imagem input[type="file"] {
   width: 100%;
   min-width: 0;
-  min-height: 35px;
+  min-height: 44px;
   padding: 4px;
   border: 1px solid #d9dbe0;
   border-radius: 5px;
@@ -1057,8 +1138,8 @@ td:last-child {
 
 .seletor-arquivo-imagem input[type="file"]:focus,
 .campo-imagem-produto input[type="file"]:focus {
-  border-color: #d88d00;
-  outline: 3px solid rgba(242, 157, 11, 0.16);
+  border-color: #075fcc;
+  outline: 3px solid #075fcc;
 }
 
 .preview-imagem-produto {
@@ -1066,8 +1147,8 @@ td:last-child {
 }
 
 .ajustes-imagem input[type="range"]:focus-visible {
-  outline: 2px solid #d88d00;
-  outline-offset: 2px;
+  outline: 3px solid #075fcc;
+  outline-offset: 3px;
 }
 
 .botao-remover-imagem:hover:not(:disabled) {
@@ -1076,7 +1157,8 @@ td:last-child {
 
 .botao-remover-imagem:focus-visible,
 .botao-adicionar-imagem:focus-visible {
-  outline: 3px solid rgba(242, 157, 11, 0.3);
+  outline: 3px solid #075fcc;
+  outline-offset: 2px;
 }
 
 .botao-adicionar-imagem:hover,
@@ -1092,7 +1174,7 @@ td:last-child {
 }
 
 .botao-cancelar {
-  min-height: 39px;
+  min-height: 44px;
   padding: 0 15px;
   border: 1px solid #d9dbe0;
   border-radius: 5px;
