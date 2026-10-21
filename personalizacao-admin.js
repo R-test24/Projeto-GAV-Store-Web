@@ -2,7 +2,45 @@ const formularioPersonalizacao = document.querySelector("#formulario-personaliza
 const avisoPersonalizacao = document.querySelector("#aviso-personalizacao");
 const camposImagemSite = [...document.querySelectorAll("[data-imagem-site]")];
 const camposTextoAlternativoSite = [...document.querySelectorAll("[data-texto-alternativo-site]")];
+const controlesAjusteBanner = [...document.querySelectorAll("[data-ajuste-banner]")];
 const imagensPendentesSite = new Map();
+const ajustesPendentesBanner = new Map();
+const idsPreviewImagemSite = {
+  slide1: "preview-slide-1",
+  slide2: "preview-slide-2",
+  slide3: "preview-slide-3",
+};
+
+function obterPreviewImagem(chave) {
+  const id = idsPreviewImagemSite[chave]
+    || `preview-${chave.replace(/[A-Z]/g, (letra) => `-${letra.toLowerCase()}`)}`;
+  return document.getElementById(id);
+}
+
+function obterValoresAjusteBanner(campo) {
+  return {
+    zoom: Number(campo.querySelector("[data-controle-ajuste='zoom']").value),
+    x: Number(campo.querySelector("[data-controle-ajuste='x']").value),
+    y: Number(campo.querySelector("[data-controle-ajuste='y']").value),
+  };
+}
+
+function atualizarAjusteBanner(campo) {
+  const ajuste = obterValoresAjusteBanner(campo);
+  campo.querySelectorAll("[data-controle-ajuste]").forEach((controle) => {
+    const saida = campo.querySelector(`[data-valor-ajuste="${controle.dataset.controleAjuste}"]`);
+    saida.value = `${controle.value}%`;
+    saida.textContent = `${controle.value}%`;
+  });
+
+  const preview = obterPreviewImagem(campo.dataset.ajusteBanner);
+  if (!preview) {
+    throw new Error("Não foi possível encontrar a prévia do banner para ajustar.");
+  }
+  preview.style.objectPosition = `${ajuste.x}% ${ajuste.y}%`;
+  preview.style.transform = `scale(${ajuste.zoom / 100})`;
+  preview.style.transformOrigin = "center";
+}
 
 function informarPersonalizacao(mensagem, erro) {
   avisoPersonalizacao.textContent = mensagem;
@@ -41,10 +79,25 @@ async function comprimirImagemSite(arquivo) {
     if (imagem.length > 800_000) {
       throw new Error(`"${arquivo.name}" continua muito grande após a compressão.`);
     }
-    return imagem;
+    return {
+      src: imagem,
+      larguraOriginal: bitmap.width,
+      alturaOriginal: bitmap.height,
+      larguraFinal: canvas.width,
+      alturaFinal: canvas.height,
+      tamanhoOriginal: arquivo.size,
+      tamanhoFinal: Math.ceil(imagem.length * 3 / 4),
+    };
   } finally {
     bitmap.close();
   }
+}
+
+function formatarTamanhoArquivo(bytes) {
+  if (bytes >= 1024 * 1024) {
+    return `${(bytes / (1024 * 1024)).toFixed(1)} MB`;
+  }
+  return `${Math.max(1, Math.round(bytes / 1024))} KB`;
 }
 
 function carregarFormularioPersonalizacao() {
@@ -65,10 +118,22 @@ function carregarFormularioPersonalizacao() {
     camposTextoAlternativoSite.forEach((campo) => {
       campo.value = config.textosAlternativos[campo.dataset.textoAlternativoSite] || "";
     });
+    controlesAjusteBanner.forEach((campo) => {
+      const chave = campo.dataset.ajusteBanner;
+      const ajuste = config.ajustesImagens[chave] || {
+        zoom: 100,
+        x: 50,
+        y: chave === "slide3" ? 38 : 50,
+      };
+      campo.querySelectorAll("[data-controle-ajuste]").forEach((controle) => {
+        controle.value = String(ajuste[controle.dataset.controleAjuste]);
+      });
+      atualizarAjusteBanner(campo);
+    });
 
     camposImagemSite.forEach((campo) => {
       const imagem = config.imagens[campo.dataset.imagemSite];
-      const preview = document.querySelector(`#preview-${campo.dataset.imagemSite.replace(/[A-Z]/g, (letra) => `-${letra.toLowerCase()}`)}`);
+      const preview = obterPreviewImagem(campo.dataset.imagemSite);
       if (imagem && preview) {
         preview.src = imagem;
       }
@@ -88,13 +153,36 @@ camposImagemSite.forEach((campo) => {
 
     try {
       const imagem = await comprimirImagemSite(arquivo);
-      imagensPendentesSite.set(campo.dataset.imagemSite, imagem);
-      const previewId = `preview-${campo.dataset.imagemSite.replace(/[A-Z]/g, (letra) => `-${letra.toLowerCase()}`)}`;
-      document.querySelector(`#${previewId}`).src = imagem;
-      informarPersonalizacao(`${arquivo.name} carregada. Salve para aplicar na loja.`);
+      imagensPendentesSite.set(campo.dataset.imagemSite, imagem.src);
+      const preview = obterPreviewImagem(campo.dataset.imagemSite);
+      if (!preview) {
+        throw new Error("Não foi possível encontrar a prévia da imagem selecionada.");
+      }
+      preview.src = imagem.src;
+      const informacao = document.querySelector(`[data-info-imagem="${campo.dataset.imagemSite}"]`);
+      if (informacao) {
+        informacao.textContent = `Original: ${imagem.larguraOriginal} × ${imagem.alturaOriginal} px, ${formatarTamanhoArquivo(imagem.tamanhoOriginal)}. Otimizada: ${imagem.larguraFinal} × ${imagem.alturaFinal} px, cerca de ${formatarTamanhoArquivo(imagem.tamanhoFinal)}.`;
+      }
+      informarPersonalizacao(`${arquivo.name} carregada e otimizada. Salve para aplicar na loja.`);
     } catch (erro) {
       campo.value = "";
       informarPersonalizacao(`Não foi possível carregar a imagem. ${mensagemErroPersonalizacao(erro)}`, erro);
+    }
+  });
+});
+
+controlesAjusteBanner.forEach((campo) => {
+  campo.addEventListener("input", (evento) => {
+    if (!evento.target.matches("[data-controle-ajuste]")) {
+      return;
+    }
+    try {
+      const chave = campo.dataset.ajusteBanner;
+      const ajuste = obterValoresAjusteBanner(campo);
+      ajustesPendentesBanner.set(chave, ajuste);
+      atualizarAjusteBanner(campo);
+    } catch (erro) {
+      informarPersonalizacao(`Não foi possível atualizar a prévia do banner. ${mensagemErroPersonalizacao(erro)}`, erro);
     }
   });
 });
@@ -134,8 +222,13 @@ formularioPersonalizacao.addEventListener("submit", (evento) => {
     imagensPendentesSite.forEach((imagem, chave) => {
       config.imagens[chave] = imagem;
     });
+    config.ajustesImagens = { ...config.ajustesImagens };
+    ajustesPendentesBanner.forEach((ajuste, chave) => {
+      config.ajustesImagens[chave] = ajuste;
+    });
     GAVSiteConfig.salvar(config);
     imagensPendentesSite.clear();
+    ajustesPendentesBanner.clear();
     informarPersonalizacao("Personalização salva. Recarregue a página inicial para conferir as alterações.");
   } catch (erro) {
     informarPersonalizacao(`Não foi possível salvar. ${mensagemErroPersonalizacao(erro)}`, erro);
@@ -146,6 +239,7 @@ document.querySelector("#restaurar-personalizacao").addEventListener("click", ()
   try {
     GAVSiteConfig.restaurar();
     imagensPendentesSite.clear();
+    ajustesPendentesBanner.clear();
     formularioPersonalizacao.reset();
     camposImagemSite.forEach((campo) => {
       campo.value = "";

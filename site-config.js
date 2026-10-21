@@ -2,22 +2,22 @@
   const CHAVE = "gavstore.personalizacao";
   const padrao = {
     imagens: {
-      slide1: "imagens/banner.png",
-      slide2: "imagens/figma/atleta-estudio.png",
-      slide3: "imagens/figma/treino-dupla-por-do-sol.png",
+      slide1: "imagens/banner 1.png",
+      slide2: "imagens/fretegratis.png",
+      slide3: "imagens/treinourbannobanner.png",
       bannerCentro: "imagens/bannercentro.png",
-      categoria1: "imagens/figma/conjunto-preto.png",
-      categoria2: "imagens/figma/ajuste-conjunto-azul.png",
+      categoria1: "imagens/laranja.png",
+      categoria2: "imagens/azul.png",
       categoria3: "imagens/figma/conjunto-coral-shorts.png",
       categoria4: "imagens/figma/atleta-jaqueta-urbana.png",
-      galeria1: "imagens/figma/treino-dupla-por-do-sol-preview.png",
+      galeria1: "imagens/figma/retratopordosol.png",
       galeria2: "imagens/figma/atleta-estudio-preview.png",
       galeria3: "imagens/figma/corrida-urbana-preview.png",
       guia: "imagens/figma/ajuste-conjunto-azul.png",
     },
     textosAlternativos: {
       slide1: "Atleta correndo em uma pista urbana ao entardecer",
-      slide2: "Atleta treinando em um estúdio de concreto iluminado",
+      slide2: "frete grátis",
       slide3: "Duas pessoas treinando em uma quadra ao pôr do sol",
       bannerCentro: "Atleta correndo por uma trilha em meio à natureza",
       categoria1: "Conjunto preto de top e legging esportiva",
@@ -29,6 +29,7 @@
       galeria3: "Atleta correndo em uma via urbana",
       guia: "Atleta verificando o ajuste de um conjunto esportivo azul",
     },
+    ajustesImagens: {},
     tituloSlide: "Seu movimento, suas regras.",
     descricaoSlide: "Encontre peças que acompanham cada treino.",
     botaoSlide1: "Ver coleção",
@@ -67,6 +68,7 @@
       !config.imagens ||
       typeof config.imagens !== "object" ||
       (config.textosAlternativos !== undefined && typeof config.textosAlternativos !== "object") ||
+      (config.ajustesImagens !== undefined && typeof config.ajustesImagens !== "object") ||
       (config.redes !== undefined && typeof config.redes !== "object") ||
       !config.secoes ||
       typeof config.secoes !== "object"
@@ -79,6 +81,7 @@
       ...config,
       imagens: { ...padrao.imagens, ...config.imagens },
       textosAlternativos: { ...padrao.textosAlternativos, ...config.textosAlternativos },
+      ajustesImagens: { ...padrao.ajustesImagens, ...config.ajustesImagens },
       redes: { ...padrao.redes, ...config.redes },
       secoes: { ...padrao.secoes, ...config.secoes },
     };
@@ -129,6 +132,12 @@
         const textoAlternativo = config.textosAlternativos[chave];
         if (typeof textoAlternativo === "string") {
           imagem.alt = textoAlternativo;
+        }
+        const ajuste = config.ajustesImagens[chave];
+        if (ajuste) {
+          imagem.objectPosition = `${ajuste.x}% ${ajuste.y}%`;
+          imagem.style.transform = `scale(${ajuste.zoom / 100})`;
+          imagem.style.transformOrigin = "center";
         }
       });
 

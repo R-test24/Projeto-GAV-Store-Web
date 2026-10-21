@@ -171,7 +171,7 @@
             <div class="cabecalho-tabela">
               <div>
                 <h3 id="titulo-banners">Banners da página inicial</h3>
-                <p>Escolha imagens do seu dispositivo. As fotos serão comprimidas para armazenamento local.</p>
+                <p>Arquivos de até 20 MB. As imagens são otimizadas para no máximo 1200 px no lado maior e até 800 KB de dados armazenados neste navegador. As proporções abaixo são recomendações; outras dimensões também são aceitas e podem ser enquadradas nos controles.</p>
               </div>
             </div>
             <div class="grade-banners">
@@ -179,21 +179,65 @@
                 <div class="preview-banner"><img id="preview-slide-1" alt="Prévia do banner 1"></div>
                 <label for="imagem-slide-1">Banner do carrossel 1</label>
                 <input id="imagem-slide-1" type="file" accept="image/*" data-imagem-site="slide1">
+                <span class="dica-tamanho-banner">Recomendado: 1200 × 400 px (proporção 3:1). No celular, as laterais são recortadas.</span>
+                <p class="info-dimensao-imagem" id="info-imagem-slide1" data-info-imagem="slide1" role="status" aria-live="polite"></p>
+                <fieldset class="ajustes-banner" data-ajuste-banner="slide1">
+                  <legend>Ajustar enquadramento</legend>
+                  <label for="zoom-slide-1">Zoom <output data-valor-ajuste="zoom">100%</output></label>
+                  <input id="zoom-slide-1" type="range" min="100" max="200" step="1" value="100" data-controle-ajuste="zoom">
+                  <label for="horizontal-slide-1">Posição horizontal <output data-valor-ajuste="x">50%</output></label>
+                  <input id="horizontal-slide-1" type="range" min="0" max="100" step="1" value="50" data-controle-ajuste="x">
+                  <label for="vertical-slide-1">Posição vertical <output data-valor-ajuste="y">50%</output></label>
+                  <input id="vertical-slide-1" type="range" min="0" max="100" step="1" value="50" data-controle-ajuste="y">
+                </fieldset>
               </div>
               <div class="campo-banner">
                 <div class="preview-banner"><img id="preview-slide-2" alt="Prévia do banner 2"></div>
                 <label for="imagem-slide-2">Banner do carrossel 2</label>
                 <input id="imagem-slide-2" type="file" accept="image/*" data-imagem-site="slide2">
+                <span class="dica-tamanho-banner">Recomendado: 1200 × 400 px (proporção 3:1). No celular, as laterais são recortadas.</span>
+                <p class="info-dimensao-imagem" id="info-imagem-slide2" data-info-imagem="slide2" role="status" aria-live="polite"></p>
+                <fieldset class="ajustes-banner" data-ajuste-banner="slide2">
+                  <legend>Ajustar enquadramento</legend>
+                  <label for="zoom-slide-2">Zoom <output data-valor-ajuste="zoom">100%</output></label>
+                  <input id="zoom-slide-2" type="range" min="100" max="200" step="1" value="100" data-controle-ajuste="zoom">
+                  <label for="horizontal-slide-2">Posição horizontal <output data-valor-ajuste="x">50%</output></label>
+                  <input id="horizontal-slide-2" type="range" min="0" max="100" step="1" value="50" data-controle-ajuste="x">
+                  <label for="vertical-slide-2">Posição vertical <output data-valor-ajuste="y">50%</output></label>
+                  <input id="vertical-slide-2" type="range" min="0" max="100" step="1" value="50" data-controle-ajuste="y">
+                </fieldset>
               </div>
               <div class="campo-banner">
                 <div class="preview-banner"><img id="preview-slide-3" alt="Prévia do banner 3"></div>
                 <label for="imagem-slide-3">Banner do carrossel 3</label>
                 <input id="imagem-slide-3" type="file" accept="image/*" data-imagem-site="slide3">
+                <span class="dica-tamanho-banner">Recomendado: 1200 × 400 px (proporção 3:1). No celular, as laterais são recortadas.</span>
+                <p class="info-dimensao-imagem" id="info-imagem-slide3" data-info-imagem="slide3" role="status" aria-live="polite"></p>
+                <fieldset class="ajustes-banner" data-ajuste-banner="slide3">
+                  <legend>Ajustar enquadramento</legend>
+                  <label for="zoom-slide-3">Zoom <output data-valor-ajuste="zoom">100%</output></label>
+                  <input id="zoom-slide-3" type="range" min="100" max="200" step="1" value="100" data-controle-ajuste="zoom">
+                  <label for="horizontal-slide-3">Posição horizontal <output data-valor-ajuste="x">50%</output></label>
+                  <input id="horizontal-slide-3" type="range" min="0" max="100" step="1" value="50" data-controle-ajuste="x">
+                  <label for="vertical-slide-3">Posição vertical <output data-valor-ajuste="y">38%</output></label>
+                  <input id="vertical-slide-3" type="range" min="0" max="100" step="1" value="38" data-controle-ajuste="y">
+                </fieldset>
               </div>
               <div class="campo-banner">
                 <div class="preview-banner"><img id="preview-banner-centro" alt="Prévia do banner central"></div>
                 <label for="imagem-banner-centro">Banner central da página</label>
                 <input id="imagem-banner-centro" type="file" accept="image/*" data-imagem-site="bannerCentro">
+                <span class="dica-tamanho-banner">Recomendado: 1200 × 427 px (proporção aproximada 2,81:1).</span>
+                <p class="info-dimensao-imagem" id="info-imagem-bannerCentro" data-info-imagem="bannerCentro" role="status" aria-live="polite"></p>
+                <fieldset class="ajustes-banner" data-ajuste-banner="bannerCentro">
+                  <legend>Ajustar enquadramento</legend>
+                  <label for="zoom-banner-centro">Zoom <output data-valor-ajuste="zoom">100%</output></label>
+                  <input id="zoom-banner-centro" type="range" min="100" max="200" step="1" value="100" data-controle-ajuste="zoom">
+                  <label for="horizontal-banner-centro">Posição horizontal <output data-valor-ajuste="x">50%</output></label>
+                  <input id="horizontal-banner-centro" type="range" min="0" max="100" step="1" value="50" data-controle-ajuste="x">
+                  <label for="vertical-banner-centro">Posição vertical <output data-valor-ajuste="y">50%</output></label>
+                  <input id="vertical-banner-centro" type="range" min="0" max="100" step="1" value="50" data-controle-ajuste="y">
+                </fieldset>
               </div>
             </div>
             <div class="cabecalho-imagens-adicionais">
